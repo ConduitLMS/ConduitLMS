@@ -1,19 +1,25 @@
 import React, { useState } from 'react'
 
 import {
-  AppstoreOutlined,
-  MailOutlined,
-  SettingOutlined,
+  UserOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
+  HomeOutlined,
+  BankOutlined,
 } from '@ant-design/icons'
 import type { MenuProps } from 'antd'
-import { Menu, Layout, Button, theme } from 'antd'
+import {
+  Menu,
+  Layout,
+  Breadcrumb,
+  theme,
+  Avatar,
+  Dropdown,
+  Space,
+  Badge,
+} from 'antd'
 
-const { Header, Footer, Sider, Content } = Layout
+const { Header, Sider, Content } = Layout
 
 import { Link, routes } from '@redwoodjs/router'
 
@@ -39,69 +45,8 @@ function getItem(
   } as MenuItem
 }
 
-const topbarItems: MenuProps['items'] = [
-  {
-    label: 'Navigation One',
-    key: 'mail',
-    icon: <MailOutlined />,
-  },
-  {
-    label: 'Navigation Two',
-    key: 'app',
-    icon: <AppstoreOutlined />,
-    disabled: true,
-  },
-  {
-    label: 'Navigation Three - Submenu',
-    key: 'SubMenu',
-    icon: <SettingOutlined />,
-    children: [
-      {
-        type: 'group',
-        label: 'Item 1',
-        children: [
-          {
-            label: 'Option 1',
-            key: 'setting:1',
-          },
-          {
-            label: 'Option 2',
-            key: 'setting:2',
-          },
-        ],
-      },
-      {
-        type: 'group',
-        label: 'Item 2',
-        children: [
-          {
-            label: 'Option 3',
-            key: 'setting:3',
-          },
-          {
-            label: 'Option 4',
-            key: 'setting:4',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    label: (
-      <a href="https://ant.design" target="_blank" rel="noopener noreferrer">
-        Navigation Four - Link
-      </a>
-    ),
-    key: 'alipay',
-  },
-]
-
 const SiteLayout = ({ children }: SiteLayoutProps) => {
   const [collapsed, setCollapsed] = useState(false)
-
-  const toggleCollapsed = () => {
-    setCollapsed(!collapsed)
-  }
 
   const onClick: MenuProps['onClick'] = (e) => {
     console.log('click ', e)
@@ -113,12 +58,14 @@ const SiteLayout = ({ children }: SiteLayoutProps) => {
 
   return (
     <Layout>
+      <div className="logo" />
       <Sider
         trigger={null}
         collapsible
         collapsed={collapsed}
         style={{
           background: colorBgContainer,
+          height: '100vh',
         }}
       >
         <div className="logo" />
@@ -127,28 +74,17 @@ const SiteLayout = ({ children }: SiteLayoutProps) => {
           style={{ maxWidth: 256, background: colorBgContainer }}
           defaultSelectedKeys={['1']}
           items={[
-            getItem('Navigation One', 'sub1', <MailOutlined />, [
-              getItem('Option 1', '1'),
-              getItem('Option 2', '2'),
-              getItem('Option 3', '3'),
-              getItem('Option 4', '4'),
-            ]),
+            getItem(
+              <Link to={routes.home()}>Home</Link>,
+              'sub1',
+              <HomeOutlined />
+            ),
 
-            getItem('Navigation Two', 'sub2', <AppstoreOutlined />, [
-              getItem('Option 5', '5'),
-              getItem('Option 6', '6'),
-              getItem('Submenu', 'sub3', null, [
-                getItem('Option 7', '7'),
-                getItem('Option 8', '8'),
-              ]),
-            ]),
-
-            getItem('Navigation Three', 'sub4', <SettingOutlined />, [
-              getItem('Option 9', '9'),
-              getItem('Option 10', '10'),
-              getItem('Option 11', '11'),
-              getItem('Option 12', '12'),
-            ]),
+            getItem(
+              <Link to={routes.marketplace()}>Marketplace</Link>,
+              'sub4',
+              <BankOutlined />
+            ),
           ]}
         />
       </Sider>
@@ -169,14 +105,60 @@ const SiteLayout = ({ children }: SiteLayoutProps) => {
             }
           )}
           <Menu
-            style={{ padding: 0, background: colorBgContainer, paddingLeft: 5 }}
+            style={{
+              padding: 0,
+              background: colorBgContainer,
+              paddingLeft: 5,
+              marginLeft: 'auto',
+            }}
             onClick={onClick}
             mode="horizontal"
-            items={topbarItems}
-          />
+            items={[
+              getItem(
+                '',
+                '',
+                <Dropdown
+                  overlay={
+                    <Menu>
+                      <Menu.Item key="1">Profile</Menu.Item>
+                      <Menu.Item key="2">Settings</Menu.Item>
+                      <Menu.Divider />
+                      <Menu.Item key="3">Logout</Menu.Item>
+                    </Menu>
+                  }
+                >
+                  <span className="avatar-item">
+                    <Badge count={99}>
+                      <Avatar shape="square" icon={<UserOutlined />} />
+                    </Badge>
+                    <span
+                      style={{
+                        paddingLeft: 15,
+                      }}
+                    >
+                      <p>fName lName</p>
+                    </span>
+                  </span>
+                </Dropdown>
+              ),
+            ]}
+          >
+            <Menu.Item key="app">
+              <Avatar
+                size={24}
+                style={{ verticalAlign: 'middle' }}
+                icon={<UserOutlined />}
+              />
+            </Menu.Item>
+          </Menu>
         </Header>
 
         <Layout style={{ padding: '0 24px 24px' }}>
+          <Breadcrumb style={{ margin: '16px 0' }}>
+            <Breadcrumb.Item>Home</Breadcrumb.Item>
+            <Breadcrumb.Item>List</Breadcrumb.Item>
+            <Breadcrumb.Item>App</Breadcrumb.Item>
+          </Breadcrumb>
           <Content
             style={{
               margin: '24px 16px',
