@@ -4,6 +4,8 @@ import type {
   OrganizationRelationResolvers,
 } from 'types/graphql'
 
+import { validate } from '@redwoodjs/api'
+
 import { db } from 'src/lib/db'
 
 export const organizations: QueryResolvers['organizations'] = () => {
@@ -19,6 +21,8 @@ export const organization: QueryResolvers['organization'] = ({ id }) => {
 export const createOrganization: MutationResolvers['createOrganization'] = ({
   input,
 }) => {
+  validate(input.contactEmail, 'email', { email: true })
+
   return db.organization.create({
     data: input,
   })

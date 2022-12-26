@@ -1,5 +1,5 @@
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -19,7 +19,8 @@ model User {
 }
 model Organization {
   id          Int      @id @default(autoincrement())
-  name        String   @unique
+  name        String
+  contactEmail String?
   description String?
   address     String?
   logo        String?
