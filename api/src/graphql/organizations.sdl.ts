@@ -37,8 +37,7 @@ export const schema = gql`
   }
 
   type Mutation {
-    createOrganization(input: CreateOrganizationInput!): Organization!
-      @requireAuth
+    createOrganization(input: CreateOrganizationInput!): Organization! @skipAuth
     updateOrganization(
       id: Int!
       input: UpdateOrganizationInput!

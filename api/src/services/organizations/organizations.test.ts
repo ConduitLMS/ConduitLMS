@@ -33,11 +33,11 @@ describe('organizations', () => {
 
   scenario('creates a organization', async () => {
     const result = await createOrganization({
-      input: { name: 'String', updatedAt: '2022-12-26T01:04:33.310Z' },
+      input: { name: 'String', updatedAt: '2022-12-26T20:37:59.762Z' },
     })
 
     expect(result.name).toEqual('String')
-    expect(result.updatedAt).toEqual(new Date('2022-12-26T01:04:33.310Z'))
+    expect(result.updatedAt).toEqual(new Date('2022-12-26T20:37:59.762Z'))
   })
 
   scenario('updates a organization', async (scenario: StandardScenario) => {

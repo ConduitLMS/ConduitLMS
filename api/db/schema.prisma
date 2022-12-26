@@ -10,25 +10,41 @@ generator client {
 
 model User {
   id    Int     @id @default(autoincrement())
+  hashedPassword String
   organization Organization @relation(fields: [organizationId], references: [id])
   organizationId Int
+  salt String
+  resetToken String?
+  resetTokenExpiresAt DateTime?
   email String  @unique
   name  String?
+  webAuthnChallenge   String? @unique
+  credentials         UserCredential[]
   departments Department[]
   roles Role[]
 }
+
+model UserCredential {
+  id         String  @id
+  userId     Int
+  user       User    @relation(fields: [userId], references: [id])
+  publicKey  Bytes
+  transports String?
+  counter    BigInt
+}
+
 model Organization {
-  id          Int      @id @default(autoincrement())
-  name        String
-  contactEmail String?
-  description String?
-  address     String?
-  logo        String?
-  country     String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  users       User[]
-  departments Department[]
+ id    Int     @id @default(autoincrement())
+ name  String
+ contactEmail String?
+ description String?
+ address     String?
+ logo        String?
+ country     String?
+ createdAt   DateTime @default(now())
+ updatedAt   DateTime @updatedAt
+ users       User[]
+ departments Department[]
 }
 
 model Department {
@@ -51,3 +67,4 @@ model Role {
   updatedAt   DateTime @updatedAt
   users       User[]
 }
+

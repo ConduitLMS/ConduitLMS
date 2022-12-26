@@ -25,25 +25,25 @@ describe('roles', () => {
   scenario('creates a role', async () => {
     const result = await createRole({
       input: {
-        name: 'String9475331',
-        level: 9411233,
-        updatedAt: '2022-12-24T14:10:54.914Z',
+        name: 'String8345973',
+        level: 5243012,
+        updatedAt: '2022-12-26T20:37:37.074Z',
       },
     })
 
-    expect(result.name).toEqual('String9475331')
-    expect(result.level).toEqual(9411233)
-    expect(result.updatedAt).toEqual(new Date('2022-12-24T14:10:54.914Z'))
+    expect(result.name).toEqual('String8345973')
+    expect(result.level).toEqual(5243012)
+    expect(result.updatedAt).toEqual(new Date('2022-12-26T20:37:37.074Z'))
   })
 
   scenario('updates a role', async (scenario: StandardScenario) => {
     const original = (await role({ id: scenario.role.one.id })) as Role
     const result = await updateRole({
       id: original.id,
-      input: { name: 'String24675492' },
+      input: { name: 'String87529602' },
     })
 
-    expect(result.name).toEqual('String24675492')
+    expect(result.name).toEqual('String87529602')
   })
 
   scenario('deletes a role', async (scenario: StandardScenario) => {
