@@ -5,25 +5,19 @@ export const standard = defineScenario<Prisma.DepartmentCreateArgs>({
   department: {
     one: {
       data: {
-        name: 'String7197378',
-        updatedAt: '2022-12-24T14:10:44.567Z',
+        name: 'String7093262',
+        updatedAt: '2022-12-26T20:37:43.242Z',
         organization: {
-          create: {
-            name: 'String7858617',
-            updatedAt: '2022-12-24T14:10:44.567Z',
-          },
+          create: { name: 'String', updatedAt: '2022-12-26T20:37:43.242Z' },
         },
       },
     },
     two: {
       data: {
-        name: 'String1889913',
-        updatedAt: '2022-12-24T14:10:44.567Z',
+        name: 'String9806785',
+        updatedAt: '2022-12-26T20:37:43.242Z',
         organization: {
-          create: {
-            name: 'String2070613',
-            updatedAt: '2022-12-24T14:10:44.567Z',
-          },
+          create: { name: 'String', updatedAt: '2022-12-26T20:37:43.242Z' },
         },
       },
     },

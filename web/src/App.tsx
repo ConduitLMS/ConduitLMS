@@ -3,6 +3,7 @@ import { ConfigProvider, theme } from 'antd'
 import { initializeApp, getApp, getApps } from 'firebase/app'
 
 import { AuthProvider } from '@redwoodjs/auth'
+import WebAuthnClient from '@redwoodjs/auth/webAuthn'
 import { FatalErrorBoundary, RedwoodProvider } from '@redwoodjs/web'
 import { RedwoodApolloProvider } from '@redwoodjs/web/apollo'
 
@@ -42,7 +43,7 @@ const App = () => (
       }}
     >
       <RedwoodProvider titleTemplate="%PageTitle | %AppTitle">
-        <AuthProvider client={firebaseClient} type="firebase">
+        <AuthProvider type="dbAuth" client={WebAuthnClient}>
           <RedwoodApolloProvider>
             <Routes />
           </RedwoodApolloProvider>

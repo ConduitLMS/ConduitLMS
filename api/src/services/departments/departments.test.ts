@@ -34,14 +34,14 @@ describe('departments', () => {
   scenario('creates a department', async (scenario: StandardScenario) => {
     const result = await createDepartment({
       input: {
-        name: 'String3056215',
-        updatedAt: '2022-12-24T14:10:44.548Z',
+        name: 'String5891332',
+        updatedAt: '2022-12-26T20:37:43.223Z',
         organizationId: scenario.department.two.organizationId,
       },
     })
 
-    expect(result.name).toEqual('String3056215')
-    expect(result.updatedAt).toEqual(new Date('2022-12-24T14:10:44.548Z'))
+    expect(result.name).toEqual('String5891332')
+    expect(result.updatedAt).toEqual(new Date('2022-12-26T20:37:43.223Z'))
     expect(result.organizationId).toEqual(
       scenario.department.two.organizationId
     )
@@ -53,10 +53,10 @@ describe('departments', () => {
     })) as Department
     const result = await updateDepartment({
       id: original.id,
-      input: { name: 'String17081852' },
+      input: { name: 'String81992472' },
     })
 
-    expect(result.name).toEqual('String17081852')
+    expect(result.name).toEqual('String81992472')
   })
 
   scenario('deletes a department', async (scenario: StandardScenario) => {

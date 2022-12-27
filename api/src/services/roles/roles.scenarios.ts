@@ -5,16 +5,16 @@ export const standard = defineScenario<Prisma.RoleCreateArgs>({
   role: {
     one: {
       data: {
-        name: 'String6393186',
-        level: 5035397,
-        updatedAt: '2022-12-24T14:10:54.928Z',
+        name: 'String1710444',
+        level: 3292290,
+        updatedAt: '2022-12-26T20:37:37.088Z',
       },
     },
     two: {
       data: {
-        name: 'String9626915',
-        level: 6121582,
-        updatedAt: '2022-12-24T14:10:54.928Z',
+        name: 'String4102441',
+        level: 1308018,
+        updatedAt: '2022-12-26T20:37:37.088Z',
       },
     },
   },

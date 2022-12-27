@@ -1,12 +1,14 @@
 export const schema = gql`
   type User {
     id: Int!
-    organization: Organization!
-    organizationId: Int!
+    hashedPassword: String!
+    salt: String!
+    resetToken: String
+    resetTokenExpiresAt: DateTime
     email: String!
     name: String
-    departments: [Department]!
-    roles: [Role]!
+    organizationId: Int
+    webAuthnChallenge: String
   }
 
   type Query {
@@ -15,15 +17,24 @@ export const schema = gql`
   }
 
   input CreateUserInput {
-    organizationId: Int!
+    hashedPassword: String!
+    salt: String!
+    resetToken: String
+    resetTokenExpiresAt: DateTime
     email: String!
     name: String
+    organizationId: Int
+    webAuthnChallenge: String
   }
 
   input UpdateUserInput {
-    organizationId: Int
+    hashedPassword: String
+    salt: String
+    resetToken: String
+    resetTokenExpiresAt: DateTime
     email: String
     name: String
+    webAuthnChallenge: String
   }
 
   type Mutation {

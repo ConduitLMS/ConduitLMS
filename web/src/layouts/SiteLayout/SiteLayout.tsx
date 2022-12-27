@@ -1,27 +1,19 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import {
-  UserOutlined,
+  BankOutlined,
+  HomeOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  HomeOutlined,
-  BankOutlined,
+  UserOutlined,
 } from '@ant-design/icons'
 import type { MenuProps } from 'antd'
-import {
-  Menu,
-  Layout,
-  Breadcrumb,
-  theme,
-  Avatar,
-  Dropdown,
-  Space,
-  Badge,
-} from 'antd'
+import { Avatar, Badge, Breadcrumb, Dropdown, Layout, Menu, theme } from 'antd'
 
+import { useAuth } from '@redwoodjs/auth'
 const { Header, Sider, Content } = Layout
 
-import { Link, routes } from '@redwoodjs/router'
+import { Link, Redirect, routes } from '@redwoodjs/router'
 
 type SiteLayoutProps = {
   children?: React.ReactNode
@@ -47,9 +39,16 @@ function getItem(
 
 const SiteLayout = ({ children }: SiteLayoutProps) => {
   const [collapsed, setCollapsed] = useState(false)
+  const { logOut } = useAuth()
 
   const onClick: MenuProps['onClick'] = (e) => {
     console.log('click ', e)
+  }
+
+  const LogOut = () => {
+    console.log('hiiii')
+    logOut()
+    ;<Redirect to={routes.home()} />
   }
 
   const {
@@ -123,7 +122,9 @@ const SiteLayout = ({ children }: SiteLayoutProps) => {
                       <Menu.Item key="1">Profile</Menu.Item>
                       <Menu.Item key="2">Settings</Menu.Item>
                       <Menu.Divider />
-                      <Menu.Item key="3">Logout</Menu.Item>
+                      <Menu.Item key="3" onClick={LogOut}>
+                        Logout
+                      </Menu.Item>
                     </Menu>
                   }
                 >
