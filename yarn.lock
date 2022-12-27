@@ -4815,7 +4815,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@redwoodjs/api@npm:3.8.0":
+"@redwoodjs/api@npm:3.8.0, @redwoodjs/api@npm:^3.8.0":
   version: 3.8.0
   resolution: "@redwoodjs/api@npm:3.8.0"
   dependencies:
@@ -4856,7 +4856,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@redwoodjs/auth@npm:3.8.0":
+"@redwoodjs/auth@npm:3.8.0, @redwoodjs/auth@npm:^3.8.0":
   version: 3.8.0
   resolution: "@redwoodjs/auth@npm:3.8.0"
   dependencies:
@@ -4914,7 +4914,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@redwoodjs/core@npm:3.8.0":
+"@redwoodjs/core@npm:^3.8.0":
   version: 3.8.0
   resolution: "@redwoodjs/core@npm:3.8.0"
   dependencies:
@@ -5012,7 +5012,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@redwoodjs/forms@npm:3.8.0":
+"@redwoodjs/forms@npm:^3.8.0":
   version: 3.8.0
   resolution: "@redwoodjs/forms@npm:3.8.0"
   dependencies:
@@ -5027,7 +5027,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@redwoodjs/graphql-server@npm:3.8.0":
+"@redwoodjs/graphql-server@npm:3.8.0, @redwoodjs/graphql-server@npm:^3.8.0":
   version: 3.8.0
   resolution: "@redwoodjs/graphql-server@npm:3.8.0"
   dependencies:
@@ -5121,7 +5121,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@redwoodjs/router@npm:3.8.0":
+"@redwoodjs/router@npm:3.8.0, @redwoodjs/router@npm:^3.8.0":
   version: 3.8.0
   resolution: "@redwoodjs/router@npm:3.8.0"
   dependencies:
@@ -5224,7 +5224,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@redwoodjs/web@npm:3.8.0":
+"@redwoodjs/web@npm:3.8.0, @redwoodjs/web@npm:^3.8.0":
   version: 3.8.0
   resolution: "@redwoodjs/web@npm:3.8.0"
   dependencies:
@@ -8509,8 +8509,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "api@workspace:api"
   dependencies:
-    "@redwoodjs/api": 3.8.0
-    "@redwoodjs/graphql-server": 3.8.0
+    "@redwoodjs/api": ^3.8.0
+    "@redwoodjs/graphql-server": ^3.8.0
     firebase-admin: ^11.4.1
   languageName: unknown
   linkType: soft
@@ -22612,7 +22612,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
-    "@redwoodjs/core": 3.8.0
+    "@redwoodjs/core": ^3.8.0
     "@types/styled-components": ^5.1.26
     antd: ^5.1.0
     styled-components: ^5.3.6
@@ -25675,10 +25675,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "web@workspace:web"
   dependencies:
-    "@redwoodjs/auth": 3.8.0
-    "@redwoodjs/forms": 3.8.0
-    "@redwoodjs/router": 3.8.0
-    "@redwoodjs/web": 3.8.0
+    "@redwoodjs/auth": ^3.8.0
+    "@redwoodjs/forms": ^3.8.0
+    "@redwoodjs/router": ^3.8.0
+    "@redwoodjs/web": ^3.8.0
     firebase: ^9.15.0
     humanize-string: 2.1.0
     prop-types: 15.8.1
