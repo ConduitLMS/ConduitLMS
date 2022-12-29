@@ -16,6 +16,12 @@ import SiteLayout from './layouts/SiteLayout/SiteLayout'
 const Routes = () => {
   return (
     <Router>
+      <Set wrap={ScaffoldLayout} title="ModuleDocumentAgreements" titleTo="moduleDocumentAgreements" buttonLabel="New ModuleDocumentAgreement" buttonTo="newModuleDocumentAgreement">
+        <Route path="/module-document-agreements/new" page={ModuleDocumentAgreementNewModuleDocumentAgreementPage} name="newModuleDocumentAgreement" />
+        <Route path="/module-document-agreements/{id:Int}/edit" page={ModuleDocumentAgreementEditModuleDocumentAgreementPage} name="editModuleDocumentAgreement" />
+        <Route path="/module-document-agreements/{id:Int}" page={ModuleDocumentAgreementModuleDocumentAgreementPage} name="moduleDocumentAgreement" />
+        <Route path="/module-document-agreements" page={ModuleDocumentAgreementModuleDocumentAgreementsPage} name="moduleDocumentAgreements" />
+      </Set>
       <Route path="/forgot-password" page={ForgotPasswordPage} name="forgotPassword" />
       <Route path="/reset-password" page={ResetPasswordPage} name="resetPassword" />
       <Route path="/signup" page={SignupPage} name="signup" />
@@ -29,6 +35,7 @@ const Routes = () => {
         <Set wrap={SiteLayout}>
           <Route path="/organization" page={OrganizationPage} name="organization" />
           <Route path="/marketplace" page={MarketplacePage} name="marketplace" />
+          <Route path="/courses" page={CoursesPage} name="courses" />
           <Route path="/home" page={HomePage} name="home" />
         </Set>
       </Private>

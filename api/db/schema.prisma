@@ -68,3 +68,12 @@ model Role {
   users       User[]
 }
 
+model ModuleDocumentAgreement {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique
+  description String
+  content String
+  attachments String[]
+  confirm Boolean
+}
+

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 import {
   BankOutlined,
@@ -6,6 +6,7 @@ import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   UserOutlined,
+  BookOutlined,
 } from '@ant-design/icons'
 import type { MenuProps } from 'antd'
 import { Avatar, Badge, Breadcrumb, Dropdown, Layout, Menu, theme } from 'antd'
@@ -72,17 +73,28 @@ const SiteLayout = ({ children }: SiteLayoutProps) => {
           defaultOpenKeys={['sub1']}
           style={{ maxWidth: 256, background: colorBgContainer }}
           defaultSelectedKeys={['1']}
+          mode="inline"
           items={[
             getItem(
               <Link to={routes.home()}>Home</Link>,
-              'sub1',
+              'home',
               <HomeOutlined />
             ),
 
             getItem(
               <Link to={routes.marketplace()}>Marketplace</Link>,
-              'sub4',
+              'marketplace',
               <BankOutlined />
+            ),
+
+            getItem(
+              <Link to={routes.courses()}>Courses</Link>,
+              'Courses',
+              <BookOutlined />,
+              [
+                getItem('Create A Course', 'createCourse'),
+                getItem('Query A Course', 'queryCourse'),
+              ]
             ),
           ]}
         />
