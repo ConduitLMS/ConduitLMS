@@ -24,8 +24,11 @@
   },
   "packageManager": "yarn@3.3.0",
   "dependencies": {
+    "@ant-design/pro-components": "^2.3.47",
+    "@ant-design/pro-table": "^3.2.7",
     "antd": "^5.1.0",
     "antd-img-crop": "^4.5.2",
-    "styled-components": "^5.3.6"
+    "styled-components": "^5.3.6",
+    "umi-request": "^1.4.0"
   }
 }
