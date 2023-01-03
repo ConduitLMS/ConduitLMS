@@ -16,6 +16,12 @@ import SiteLayout from './layouts/SiteLayout/SiteLayout'
 const Routes = () => {
   return (
     <Router>
+      <Set wrap={ScaffoldLayout} title="Assignments" titleTo="assignments" buttonLabel="New Assignment" buttonTo="newAssignment">
+        <Route path="/assignments/new" page={AssignmentNewAssignmentPage} name="newAssignment" />
+        <Route path="/assignments/{id:Int}/edit" page={AssignmentEditAssignmentPage} name="editAssignment" />
+        <Route path="/assignments/{id:Int}" page={AssignmentAssignmentPage} name="assignment" />
+        <Route path="/assignments" page={AssignmentAssignmentsPage} name="assignments" />
+      </Set>
       <Set wrap={ScaffoldLayout} title="ModuleDocumentAgreements" titleTo="moduleDocumentAgreements" buttonLabel="New ModuleDocumentAgreement" buttonTo="newModuleDocumentAgreement">
         <Route path="/module-document-agreements/new" page={ModuleDocumentAgreementNewModuleDocumentAgreementPage} name="newModuleDocumentAgreement" />
         <Route path="/module-document-agreements/{id:Int}/edit" page={ModuleDocumentAgreementEditModuleDocumentAgreementPage} name="editModuleDocumentAgreement" />

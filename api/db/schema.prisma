@@ -19,6 +19,7 @@ model User {
   email String  @unique
   name  String?
   webAuthnChallenge   String? @unique
+  Assignments Assignment[]
   credentials         UserCredential[]
   departments Department[]
   roles Role[]
@@ -43,6 +44,7 @@ model Organization {
  country     String?
  createdAt   DateTime @default(now())
  updatedAt   DateTime @updatedAt
+ assignments Assignment[]
  users       User[]
  departments Department[]
 }
@@ -72,8 +74,26 @@ model ModuleDocumentAgreement {
   id          Int      @id @default(autoincrement())
   name        String   @unique
   description String
+  moduleTypeId Int
   content String
   attachments String[]
   confirm Boolean
 }
 
+model ModuleType {
+  id         Int      @id @default(autoincrement())
+  name        String   @unique
+  description String
+}
+
+model Assignment {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique
+  description String
+  user User @relation(fields: [userId], references: [id])
+  userId Int
+  organization Organization @relation(fields: [organizationId], references: [id])
+  organizationId Int
+  assignedDate DateTime
+  dueDate DateTime
+}
