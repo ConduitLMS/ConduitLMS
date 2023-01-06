@@ -1,7 +1,10 @@
 <p align="center">
+  <a href="" target="blank"><img src='assets/imgs/conduit.png' width="320" alt="Conduit Logo" /></a>
+<p align="center">
 
-  ![Conduit Logo](assets/imgs/conduit.png)
 
+
+</p>
 </p>
 
   <p align="center">An open source LMS, onboarding, and employee compliance application for small to enterprise size companies or teams.</p>
@@ -11,5 +14,3 @@
 </div>
 
 ---
-
-
