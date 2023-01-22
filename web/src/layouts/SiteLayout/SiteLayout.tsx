@@ -10,6 +10,7 @@ import {
 } from '@ant-design/icons'
 import type { MenuProps } from 'antd'
 import { Avatar, Badge, Breadcrumb, Dropdown, Layout, Menu, theme } from 'antd'
+import { useTranslation } from 'react-i18next'
 
 import { useAuth } from '@redwoodjs/auth'
 const { Header, Sider, Content } = Layout
@@ -56,6 +57,8 @@ const SiteLayout = ({ children }: SiteLayoutProps) => {
     token: { colorBgContainer },
   } = theme.useToken()
 
+  const { t, i18n } = useTranslation()
+
   return (
     <Layout>
       <div className="logo" />
@@ -76,19 +79,21 @@ const SiteLayout = ({ children }: SiteLayoutProps) => {
           mode="inline"
           items={[
             getItem(
-              <Link to={routes.home()}>Home</Link>,
+              <Link to={routes.home()}>{t('navigationItems.Home')}</Link>,
               'home',
               <HomeOutlined />
             ),
 
             getItem(
-              <Link to={routes.marketplace()}>Marketplace</Link>,
+              <Link to={routes.marketplace()}>
+                {t('navigationItems.Marketplace')}
+              </Link>,
               'marketplace',
               <BankOutlined />
             ),
 
             getItem(
-              <Link to={routes.courses()}>Courses</Link>,
+              <Link to={routes.courses()}>{t('navigationItems.Courses')}</Link>,
               'Courses',
               <BookOutlined />,
               [

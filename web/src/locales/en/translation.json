@@ -1,0 +1,20 @@
+{
+  "Title": "Conduit",
+  "subTitle": "An open source, self-hosted, API-first LMS",
+  "language": "English",
+  "navigationItems": {
+    "Home": "Home",
+    "Marketplace": "Marketplace",
+    "Courses": "Courses",
+    "About": "About",
+    "Contact": "Contact",
+    "Login": "Login",
+    "Register": "Register"
+  },
+  "Home": {
+    "Title": "Home Page"
+  },
+  "line1": "This is a way to test line 1",
+  "line2": "line2",
+  "line3": "line3"
+  }

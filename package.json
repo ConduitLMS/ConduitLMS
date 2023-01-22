@@ -28,6 +28,9 @@
     "@ant-design/pro-table": "^3.2.7",
     "antd": "^5.1.0",
     "antd-img-crop": "^4.5.2",
+    "i18next": "^22.4.9",
+    "react-i18next": "^12.1.4",
+    "react-intl": "^6.2.5",
     "styled-components": "^5.3.6",
     "umi-request": "^1.4.0"
   }

@@ -14,141 +14,146 @@ import { MetaTags } from '@redwoodjs/web'
 
 import ModuleDocumentAgreementsCell from 'src/components/ModuleDocumentAgreement/ModuleDocumentAgreementsCell/ModuleDocumentAgreementsCell'
 
-type GithubIssueItem = {
-  url: string
-  id: number
-  number: number
-  title: string
-  labels: {
-    name: string
-    color: string
-  }[]
-  state: string
-  comments: number
-  created_at: string
-  updated_at: string
-  closed_at?: string
-}
-
-const columns: ProColumns<GithubIssueItem>[] = [
-  {
-    dataIndex: 'index',
-    valueType: 'indexBorder',
-    width: 48,
-  },
-  {
-    title: 'title',
-    dataIndex: 'title',
-    copyable: true,
-    ellipsis: true,
-    tip: 'If the title is too long, it will automatically shrink',
-    formItemProps: {
-      rules: [
-        {
-          required: true,
-          message: 'This is required',
-        },
-      ],
-    },
-  },
-  {
-    disable: true,
-    title: 'state',
-    dataIndex: 'state',
-    filters: true,
-    onFilter: true,
-    ellipsis: true,
-    valueType: 'select',
-    valueEnum: {
-      all: { text: 'super long'.repeat(50) },
-      open: {
-        text: 'unsolved',
-        status: 'Error',
-      },
-      closed: {
-        text: 'solved',
-        status: 'Success',
-        disabled: true,
-      },
-      processing: {
-        text: 'solving',
-        status: 'Processing',
-      },
-    },
-  },
-  {
-    disable: true,
-    title: 'label',
-    dataIndex: 'labels',
-    search: false,
-    renderFormItem: (_, { defaultRender }) => {
-      return defaultRender(_)
-    },
-    render: (_, record) => (
-      <Space>
-        {record.labels.map(({ name, color }) => (
-          <Tag color={color} key={name}>
-            {name}
-          </Tag>
-        ))}
-      </Space>
-    ),
-  },
-  {
-    title: 'creation time',
-    key: 'showTime',
-    dataIndex: 'created_at',
-    valueType: 'date',
-    sorter: true,
-    hideInSearch: true,
-  },
-  {
-    title: 'created at',
-    dataIndex: 'created_at',
-    valueType: 'dateRange',
-    hideInTable: true,
-    search: {
-      transform: (value) => {
-        return {
-          startTime: value[0],
-          endTime: value[1],
-        }
-      },
-    },
-  },
-  {
-    title: 'operate',
-    valueType: 'option',
-    key: 'option',
-    render: (text, record, _, action) => [
-      <a
-        key="editable"
-        onClick={() => {
-          action?.startEditable?.(record.id)
-        }}
-      >
-        edit
-      </a>,
-      <a href={record.url} target="_blank" rel="noopener noreferrer" key="view">
-        Check
-      </a>,
-      <TableDropdown
-        key="actionGroup"
-        onSelect={() => action?.reload()}
-        menus={[
-          { key: 'copy', name: 'copy' },
-          { key: 'delete', name: 'delete' },
-        ]}
-      />,
-    ],
-  },
-]
-
 interface TitleProps {
   title: string
 }
 
 const Title: FC<TitleProps> = ({ title, subtitle }) => {
+  type GithubIssueItem = {
+    url: string
+    id: number
+    number: number
+    title: string
+    labels: {
+      name: string
+      color: string
+    }[]
+    state: string
+    comments: number
+    created_at: string
+    updated_at: string
+    closed_at?: string
+  }
+
+  const columns: ProColumns<GithubIssueItem>[] = [
+    {
+      dataIndex: 'index',
+      valueType: 'indexBorder',
+      width: 48,
+    },
+    {
+      title: 'title',
+      dataIndex: 'title',
+      copyable: true,
+      ellipsis: true,
+      tip: 'If the title is too long, it will automatically shrink',
+      formItemProps: {
+        rules: [
+          {
+            required: true,
+            message: 'This is required',
+          },
+        ],
+      },
+    },
+    {
+      disable: true,
+      title: 'state',
+      dataIndex: 'state',
+      filters: true,
+      onFilter: true,
+      ellipsis: true,
+      valueType: 'select',
+      valueEnum: {
+        all: { text: 'super long'.repeat(50) },
+        open: {
+          text: 'unsolved',
+          status: 'Error',
+        },
+        closed: {
+          text: 'solved',
+          status: 'Success',
+          disabled: true,
+        },
+        processing: {
+          text: 'solving',
+          status: 'Processing',
+        },
+      },
+    },
+    {
+      disable: true,
+      title: 'label',
+      dataIndex: 'labels',
+      search: false,
+      renderFormItem: (_, { defaultRender }) => {
+        return defaultRender(_)
+      },
+      render: (_, record) => (
+        <Space>
+          {record.labels.map(({ name, color }) => (
+            <Tag color={color} key={name}>
+              {name}
+            </Tag>
+          ))}
+        </Space>
+      ),
+    },
+    {
+      title: 'creation time',
+      key: 'showTime',
+      dataIndex: 'created_at',
+      valueType: 'date',
+      sorter: true,
+      hideInSearch: true,
+    },
+    {
+      title: 'created at',
+      dataIndex: 'created_at',
+      valueType: 'dateRange',
+      hideInTable: true,
+      search: {
+        transform: (value) => {
+          return {
+            startTime: value[0],
+            endTime: value[1],
+          }
+        },
+      },
+    },
+    {
+      title: 'operate',
+      valueType: 'option',
+      key: 'option',
+      render: (text, record, _, action) => [
+        <a
+          key="editable"
+          onClick={() => {
+            action?.startEditable?.(record.id)
+          }}
+        >
+          edit
+        </a>,
+        <a
+          href={record.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          key="view"
+        >
+          Check
+        </a>,
+        <TableDropdown
+          key="actionGroup"
+          onSelect={() => action?.reload()}
+          menus={[
+            { key: 'copy', name: 'copy' },
+            { key: 'delete', name: 'delete' },
+          ]}
+        />,
+      ],
+    },
+  ]
+
   return (
     <>
       <h1>{title}</h1>
