@@ -18,7 +18,7 @@ interface TitleProps {
   title: string
 }
 
-const Title: FC<TitleProps> = ({ title, subtitle }) => {
+const Table: FC<TitleProps> = ({ title, subtitle }) => {
   type GithubIssueItem = {
     url: string
     id: number
@@ -249,4 +249,4 @@ const Title: FC<TitleProps> = ({ title, subtitle }) => {
   )
 }
 
-export default Title
+export default Table

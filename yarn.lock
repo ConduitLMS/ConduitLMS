@@ -5655,6 +5655,41 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@rollup/plugin-babel@npm:^6.0.2":
+  version: 6.0.3
+  resolution: "@rollup/plugin-babel@npm:6.0.3"
+  dependencies:
+    "@babel/helper-module-imports": ^7.18.6
+    "@rollup/pluginutils": ^5.0.1
+  peerDependencies:
+    "@babel/core": ^7.0.0
+    "@types/babel__core": ^7.1.9
+    rollup: ^1.20.0||^2.0.0||^3.0.0
+  peerDependenciesMeta:
+    "@types/babel__core":
+      optional: true
+    rollup:
+      optional: true
+  checksum: 7751a5f93808cfa9e1371f68f31bb46929200a4263c76f05586a13e768aa3d20b1c3e99c7726b047829d7731174f8c3aa31895216cfa5187498aa8fbe8906eb7
+  languageName: node
+  linkType: hard
+
+"@rollup/pluginutils@npm:^5.0.1":
+  version: 5.0.2
+  resolution: "@rollup/pluginutils@npm:5.0.2"
+  dependencies:
+    "@types/estree": ^1.0.0
+    estree-walker: ^2.0.2
+    picomatch: ^2.3.1
+  peerDependencies:
+    rollup: ^1.20.0||^2.0.0||^3.0.0
+  peerDependenciesMeta:
+    rollup:
+      optional: true
+  checksum: b06f73c15bb59418aa6fbfead5675bab2d6922e15663525ffc2eb8429530bc5add516600adb251cfbf9b60f3d12fb821cde155cb5103415154a476bd0f163432
+  languageName: node
+  linkType: hard
+
 "@simplewebauthn/browser@npm:^6.2.2":
   version: 6.2.2
   resolution: "@simplewebauthn/browser@npm:6.2.2"
@@ -7265,7 +7300,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/estree@npm:*":
+"@types/estree@npm:*, @types/estree@npm:^1.0.0":
   version: 1.0.0
   resolution: "@types/estree@npm:1.0.0"
   checksum: 4e73ff606bf7c7ccdaa66092de650c410a4ad2ecc388fdbed8242cac9dbcad72407e1ceff041b7da691babb02ff74ab885d6231fb09368fdd1eabbf1b5253d49
@@ -11586,6 +11621,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"countup.js@npm:^2.3.2":
+  version: 2.3.2
+  resolution: "countup.js@npm:2.3.2"
+  checksum: 6366dd6c2a2baa77991fb9226499620f4cd7ddc448be5e0ad647faa4793274adc58760bc08ae54b8d6205cc37abc5620552823e8aa0a1e2da52cab22259f0c0e
+  languageName: node
+  linkType: hard
+
 "cp-file@npm:^7.0.0":
   version: 7.0.0
   resolution: "cp-file@npm:7.0.0"
@@ -13604,6 +13646,13 @@ __metadata:
     "@babel/types": ^7.2.0
     c8: ^7.6.0
   checksum: c7949b141f569528b2608ab715d593a04f7e2e529df04e0b595d0a7dea819b410e71d1f04716e43ac1480942afc5701cb5151ad2906ee8402969651a389881bb
+  languageName: node
+  linkType: hard
+
+"estree-walker@npm:^2.0.2":
+  version: 2.0.2
+  resolution: "estree-walker@npm:2.0.2"
+  checksum: 53a6c54e2019b8c914dc395890153ffdc2322781acf4bd7d1a32d7aedc1710807bdcd866ac133903d5629ec601fbb50abe8c2e5553c7f5a0afdd9b6af6c945af
   languageName: node
   linkType: hard
 
@@ -22342,6 +22391,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-countup@npm:^6.4.0":
+  version: 6.4.0
+  resolution: "react-countup@npm:6.4.0"
+  dependencies:
+    "@rollup/plugin-babel": ^6.0.2
+    countup.js: ^2.3.2
+  peerDependencies:
+    react: ">= 16.3.0"
+  checksum: 17df274e97f40508dd51f92744cde724f41875da3cf8ec008613e400d0afa48fe20428845863dc3299946beb21fb1d34127c5c5ea204b8fa42391564d0f85696
+  languageName: node
+  linkType: hard
+
 "react-docgen-typescript@npm:^2.1.1":
   version: 2.2.2
   resolution: "react-docgen-typescript@npm:2.2.2"
@@ -23319,6 +23380,7 @@ __metadata:
     antd: ^5.1.0
     antd-img-crop: ^4.5.2
     i18next: ^22.4.9
+    react-countup: ^6.4.0
     react-i18next: ^12.1.4
     react-intl: ^6.2.5
     styled-components: ^5.3.6

@@ -136,11 +136,15 @@ const SiteLayout = ({ children }: SiteLayoutProps) => {
                 <Dropdown
                   overlay={
                     <Menu>
-                      <Menu.Item key="1">Profile</Menu.Item>
-                      <Menu.Item key="2">Settings</Menu.Item>
+                      <Menu.Item key="1">
+                        {t('navigationItems.Profile')}
+                      </Menu.Item>
+                      <Menu.Item key="2">
+                        {t('navigationItems.Settings')}
+                      </Menu.Item>
                       <Menu.Divider />
                       <Menu.Item key="3" onClick={LogOut}>
-                        Logout
+                        {t('navigationItems.Logout')}
                       </Menu.Item>
                     </Menu>
                   }

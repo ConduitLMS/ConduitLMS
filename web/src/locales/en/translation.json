@@ -8,13 +8,17 @@
     "Courses": "Courses",
     "About": "About",
     "Contact": "Contact",
+    "Profile": "Profile",
+    "Settings": "Settings",
     "Login": "Login",
+    "Logout": "Logout",
     "Register": "Register"
   },
   "Home": {
-    "Title": "Home Page"
-  },
-  "line1": "This is a way to test line 1",
-  "line2": "line2",
-  "line3": "line3"
+    "Title": "Home Dashboard",
+    "Stat1": "Courses Pending",
+    "Stat2": "Deadlines Approaching",
+    "Stat3": "Overdue",
+    "Stat4": "Achievements"
+  }
   }

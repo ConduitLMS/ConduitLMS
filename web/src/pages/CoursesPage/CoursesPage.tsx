@@ -11,14 +11,13 @@ import request from 'umi-request'
 import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 
-import Title from 'src/components/AdvancedTable/AdvancedTables'
+import Table from 'src/components/AdvancedTable/AdvancedTables'
 import ModuleDocumentAgreementsCell from 'src/components/ModuleDocumentAgreement/ModuleDocumentAgreementsCell/ModuleDocumentAgreementsCell'
 
 const CoursesPage = () => {
   return (
     <>
-      <h1>HELLLLLO</h1>
-      <Title title={'cat'} subtitle={'dog'} />
+      <Table title={'cat'} subtitle={'dog'} />
     </>
   )
 }
