@@ -14,3 +14,21 @@
 </div>
 
 ---
+### Development
+
+#### Data Schema Changes
+1. Update the schema.prisma
+2. run `yarn rw prisma migrate dev`
+3. run studio `yarn rw prisma studio`
+### Port Forwarding
+
+Redwood GraphQL Playground
+`http://localhost:8911/graphql`
+
+Redwood Page Directory
+`http://localhost:8910`
+
+Redwood Prisma Data Explorer
+```bash
+yarn rw prisma studio
+```

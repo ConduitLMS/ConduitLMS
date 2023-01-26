@@ -1,3 +1,5 @@
+import { useEffect } from 'react'
+
 import {
   TrophyOutlined,
   BookOutlined,
@@ -10,11 +12,18 @@ import Title from 'antd/es/typography/Title'
 import type { Dayjs } from 'dayjs'
 import CountUp from 'react-countup'
 import { useTranslation } from 'react-i18next'
+import { useRecoilState } from 'recoil'
 
-import { Link, routes } from '@redwoodjs/router'
+import { useAuth } from '@redwoodjs/auth'
 import { MetaTags } from '@redwoodjs/web'
 
+import UserCell from 'src/components/UserCell/UserCell'
+import userSessionAtom from 'src/recoil/atoms/userSession'
+
 const HomePage = () => {
+  const [userSession, setUserSession] = useRecoilState(userSessionAtom)
+  const { currentUser } = useAuth()
+
   const { token } = theme.useToken()
   const formatter = (value: number) => <CountUp end={value} separator="," />
 
@@ -30,10 +39,16 @@ const HomePage = () => {
   }
 
   const { t, i18n } = useTranslation()
+
+  const userQueryRes = UserCell(currentUser).props.user
+
+  useEffect(() => {
+    setUserSession(userQueryRes)
+  })
+
   return (
     <>
       <MetaTags title="Home" description="Home page" />
-
       <Row gutter={16} style={{ padding: 15, height: '100%' }}>
         <Col span={6}>
           <Card bordered={false}>
@@ -88,16 +103,14 @@ const HomePage = () => {
       <Row>
         <Col span={16} style={{ padding: 15 }}>
           <Card style={{ height: '100%', padding: 15 }}>
-            <Title level={3}>{t('Home.Title')}</Title>
+            <Title level={3}>{t('Home.dashboardTitle')}</Title>
           </Card>
         </Col>
         <Col span={8} style={{ paddingTop: 15 }}>
           <div style={wrapperStyle}>
             <Calendar fullscreen={false} onPanelChange={onPanelChange} />
           </div>
-          <Card style={{ marginTop: 15 }}>
-            <h1>hello</h1>
-          </Card>
+          <Card style={{ marginTop: 15 }}></Card>
         </Col>
       </Row>
     </>

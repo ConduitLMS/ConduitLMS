@@ -16,6 +16,7 @@
   },
   "Home": {
     "Title": "Home Dashboard",
+    "dashboardTitle": "Assignments",
     "Stat1": "Courses Pending",
     "Stat2": "Deadlines Approaching",
     "Stat3": "Overdue",

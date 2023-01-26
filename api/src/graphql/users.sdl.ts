@@ -6,7 +6,8 @@ export const schema = gql`
     resetToken: String
     resetTokenExpiresAt: DateTime
     email: String!
-    name: String
+    firstName: String
+    lastName: String
     organizationId: Int
     webAuthnChallenge: String
   }
@@ -22,7 +23,8 @@ export const schema = gql`
     resetToken: String
     resetTokenExpiresAt: DateTime
     email: String!
-    name: String
+    firstName: String
+    lastName: String
     organizationId: Int
     webAuthnChallenge: String
   }

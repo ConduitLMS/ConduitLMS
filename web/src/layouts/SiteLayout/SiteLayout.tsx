@@ -13,12 +13,17 @@ import { Avatar, Badge, Breadcrumb, Dropdown, Layout, Menu, theme } from 'antd'
 import { useTranslation } from 'react-i18next'
 
 import { useAuth } from '@redwoodjs/auth'
+
 const { Header, Sider, Content } = Layout
 
 import { Link, Redirect, routes } from '@redwoodjs/router'
 
+import { useRecoilState, useRecoilValue } from 'recoil'
+
+import userSessionAtom from 'src/recoil/atoms/userSession'
+
 type SiteLayoutProps = {
-  children?: React.ReactNode
+  childreni?: React.ReactNode
 }
 
 type MenuItem = Required<MenuProps>['items'][number]
@@ -41,6 +46,9 @@ function getItem(
 
 const SiteLayout = ({ children }: SiteLayoutProps) => {
   const [collapsed, setCollapsed] = useState(false)
+
+  const userState = useRecoilValue(userSessionAtom)
+
   const { logOut } = useAuth()
 
   const onClick: MenuProps['onClick'] = (e) => {
@@ -48,7 +56,6 @@ const SiteLayout = ({ children }: SiteLayoutProps) => {
   }
 
   const LogOut = () => {
-    console.log('hiiii')
     logOut()
     ;<Redirect to={routes.home()} />
   }
@@ -158,7 +165,11 @@ const SiteLayout = ({ children }: SiteLayoutProps) => {
                         paddingLeft: 15,
                       }}
                     >
-                      <p>fName lName</p>
+                      {userState ? (
+                        <p>{userState.firstName + ' ' + userState.lastName}</p>
+                      ) : (
+                        <p>User</p>
+                      )}
                     </span>
                   </span>
                 </Dropdown>

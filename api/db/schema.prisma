@@ -17,7 +17,8 @@ model User {
   resetToken String?
   resetTokenExpiresAt DateTime?
   email String  @unique
-  name  String?
+  firstName  String?
+  lastName String?
   webAuthnChallenge   String? @unique
   Assignments Assignment[]
   credentials         UserCredential[]

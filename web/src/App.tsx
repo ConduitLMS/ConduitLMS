@@ -55,7 +55,6 @@ function App() {
           <AuthProvider type="dbAuth" client={WebAuthnClient}>
             <RedwoodApolloProvider>
               <RecoilRoot>
-                <DebugObserver />
                 <Routes />
               </RecoilRoot>
             </RedwoodApolloProvider>
