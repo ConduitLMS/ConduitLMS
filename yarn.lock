@@ -15287,6 +15287,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"hamt_plus@npm:1.0.2":
+  version: 1.0.2
+  resolution: "hamt_plus@npm:1.0.2"
+  checksum: c5aa5cc08228e8cc2a90150fef680bd5b09f16a327bdab799daeb80fd3c987663308b14e2c6718abdf75afce21d29607e35f2705eb336a14aa935c0ca5949ce7
+  languageName: node
+  linkType: hard
+
 "handle-thing@npm:^2.0.0":
   version: 2.0.1
   resolution: "handle-thing@npm:2.0.1"
@@ -22797,6 +22804,33 @@ __metadata:
   languageName: node
   linkType: hard
 
+"recoil-relay@npm:^0.1.0":
+  version: 0.1.0
+  resolution: "recoil-relay@npm:0.1.0"
+  peerDependencies:
+    react-relay: ">=13.2.0"
+    recoil: ">=0.7.3"
+    relay-runtime: ">=13.2.0"
+  checksum: efd74f27c5519d586bba3f19434eaf046cc1fd03c968ee2a01df3c2dde5ab98413a42d0641c11e49ef8dae8dd8145e5fd424043201c6f546fa9efdad8fc312b7
+  languageName: node
+  linkType: hard
+
+"recoil@npm:^0.7.6":
+  version: 0.7.6
+  resolution: "recoil@npm:0.7.6"
+  dependencies:
+    hamt_plus: 1.0.2
+  peerDependencies:
+    react: ">=16.13.1"
+  peerDependenciesMeta:
+    react-dom:
+      optional: true
+    react-native:
+      optional: true
+  checksum: 32d27ed12be773961692742062649986cabfa759d87fccd8f15d5b2278b188c09ddfe75d3dead85ecbb0a345aa62b778780d4197cfc9ad91e78b8018571562d2
+  languageName: node
+  linkType: hard
+
 "redent@npm:^1.0.0":
   version: 1.0.0
   resolution: "redent@npm:1.0.0"
@@ -23383,6 +23417,8 @@ __metadata:
     react-countup: ^6.4.0
     react-i18next: ^12.1.4
     react-intl: ^6.2.5
+    recoil: ^0.7.6
+    recoil-relay: ^0.1.0
     styled-components: ^5.3.6
     umi-request: ^1.4.0
   languageName: unknown

@@ -32,6 +32,8 @@
     "react-countup": "^6.4.0",
     "react-i18next": "^12.1.4",
     "react-intl": "^6.2.5",
+    "recoil": "^0.7.6",
+    "recoil-relay": "^0.1.0",
     "styled-components": "^5.3.6",
     "umi-request": "^1.4.0"
   }

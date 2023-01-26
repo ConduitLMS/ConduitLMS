@@ -1,6 +1,7 @@
 import * as firebaseAuth from '@firebase/auth'
 import { ConfigProvider, theme } from 'antd'
 import { initializeApp, getApp, getApps } from 'firebase/app'
+import { RecoilRoot } from 'recoil'
 
 import { AuthProvider } from '@redwoodjs/auth'
 import WebAuthnClient from '@redwoodjs/auth/webAuthn'
@@ -9,6 +10,8 @@ import { RedwoodApolloProvider } from '@redwoodjs/web/apollo'
 
 import FatalErrorPage from 'src/pages/FatalErrorPage'
 import Routes from 'src/Routes'
+
+// Recoil Root for statemanagemnt
 
 import './i18n'
 
@@ -37,22 +40,30 @@ export const firebaseClient = {
   firebaseApp, // optional
 }
 
-const App = () => (
-  <FatalErrorBoundary page={FatalErrorPage}>
-    <ConfigProvider
-      theme={{
-        algorithm: theme.defaultAlgorithm,
-      }}
-    >
-      <RedwoodProvider titleTemplate="%PageTitle | %AppTitle">
-        <AuthProvider type="dbAuth" client={WebAuthnClient}>
-          <RedwoodApolloProvider>
-            <Routes />
-          </RedwoodApolloProvider>
-        </AuthProvider>
-      </RedwoodProvider>
-    </ConfigProvider>
-  </FatalErrorBoundary>
-)
+//const myEnvironmentKey = new EnvironmentKey('My Environment')
+//const myEnvironment = useMyRelayEnvironment()
+
+function App() {
+  return (
+    <FatalErrorBoundary page={FatalErrorPage}>
+      <ConfigProvider
+        theme={{
+          algorithm: theme.defaultAlgorithm,
+        }}
+      >
+        <RedwoodProvider titleTemplate="%PageTitle | %AppTitle">
+          <AuthProvider type="dbAuth" client={WebAuthnClient}>
+            <RedwoodApolloProvider>
+              <RecoilRoot>
+                <DebugObserver />
+                <Routes />
+              </RecoilRoot>
+            </RedwoodApolloProvider>
+          </AuthProvider>
+        </RedwoodProvider>
+      </ConfigProvider>
+    </FatalErrorBoundary>
+  )
+}
 
 export default App
