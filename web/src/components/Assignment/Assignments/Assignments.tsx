@@ -1,11 +1,14 @@
+import type {
+  DeleteAssignmentMutationVariables,
+  FindAssignments,
+} from 'types/graphql'
+
 import { Link, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import { QUERY } from 'src/components/Assignment/AssignmentsCell'
 import { timeTag, truncate } from 'src/lib/formatters'
-
-import type { DeleteAssignmentMutationVariables, FindAssignments } from 'types/graphql'
 
 const DELETE_ASSIGNMENT_MUTATION = gql`
   mutation DeleteAssignmentMutation($id: Int!) {
@@ -41,7 +44,7 @@ const AssignmentsList = ({ assignments }: FindAssignments) => {
       <table className="rw-table">
         <thead>
           <tr>
-            <th>Id</th>
+            <th>Idz</th>
             <th>Name</th>
             <th>Description</th>
             <th>User id</th>

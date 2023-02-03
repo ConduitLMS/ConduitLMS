@@ -6,7 +6,16 @@ import {
   ClockCircleOutlined,
   AlertOutlined,
 } from '@ant-design/icons'
-import { Calendar, theme, Col, Row, Statistic, Card } from 'antd'
+import {
+  Calendar,
+  theme,
+  Col,
+  Row,
+  Statistic,
+  Card,
+  Progress,
+  Space,
+} from 'antd'
 import type { CalendarMode } from 'antd/es/calendar/generateCalendar'
 import Title from 'antd/es/typography/Title'
 import type { Dayjs } from 'dayjs'
@@ -17,11 +26,16 @@ import { useRecoilState } from 'recoil'
 import { useAuth } from '@redwoodjs/auth'
 import { MetaTags } from '@redwoodjs/web'
 
+import AssignmentsCell from 'src/components/Assignment/AssignmentsCell'
 import UserCell from 'src/components/UserCell/UserCell'
 import userSessionAtom from 'src/recoil/atoms/userSession'
+import assignmentsSessionAtom from 'src/recoil/atoms/userSession'
 
 const HomePage = () => {
   const [userSession, setUserSession] = useRecoilState(userSessionAtom)
+  const [assignmentsSession, setAssignmentSession] = useRecoilState(
+    assignmentsSessionAtom
+  )
   const { currentUser } = useAuth()
 
   const { token } = theme.useToken()
@@ -41,11 +55,13 @@ const HomePage = () => {
   const { t, i18n } = useTranslation()
 
   const userQueryRes = UserCell(currentUser).props.user
+  const assignmentsQueryRes = AssignmentsCell(currentUser).props.assignments
 
   useEffect(() => {
     setUserSession(userQueryRes)
   })
 
+  console.log(assignmentsSession)
   return (
     <>
       <MetaTags title="Home" description="Home page" />
@@ -104,6 +120,23 @@ const HomePage = () => {
         <Col span={16} style={{ padding: 15 }}>
           <Card style={{ height: '100%', padding: 15 }}>
             <Title level={3}>{t('Home.dashboardTitle')}</Title>
+            {assignmentsQueryRes ? (
+              assignmentsQueryRes.map((assignment) => (
+                <Card style={{ padding: 0, margin: 0 }} key={assignment.id}>
+                  <h1>{assignment.name}</h1>
+                  <p key={assignment.id}>
+                    {assignment.description}, {assignment.dueDate},{' '}
+                    {assignment.progress}
+                  </p>
+                  <Progress
+                    percent={assignment.progress}
+                    strokeColor={{ '0%': '#108ee9', '100%': '#87d068' }}
+                  />
+                </Card>
+              ))
+            ) : (
+              <p>Loading Assignments</p>
+            )}
           </Card>
         </Col>
         <Col span={8} style={{ paddingTop: 15 }}>

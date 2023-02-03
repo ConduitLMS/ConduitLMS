@@ -16,9 +16,9 @@ import { useAuth } from '@redwoodjs/auth'
 
 const { Header, Sider, Content } = Layout
 
-import { Link, Redirect, routes } from '@redwoodjs/router'
+import { Link, Redirect, routes, useLocation } from '@redwoodjs/router'
 
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { useRecoilValue } from 'recoil'
 
 import userSessionAtom from 'src/recoil/atoms/userSession'
 
@@ -45,6 +45,8 @@ function getItem(
 }
 
 const SiteLayout = ({ children }: SiteLayoutProps) => {
+  const location = useLocation()
+
   const [collapsed, setCollapsed] = useState(false)
 
   const userState = useRecoilValue(userSessionAtom)
@@ -67,7 +69,7 @@ const SiteLayout = ({ children }: SiteLayoutProps) => {
   const { t, i18n } = useTranslation()
 
   return (
-    <Layout>
+    <Layout style={{ height: '100%' }}>
       <div className="logo" />
       <Sider
         trigger={null}
@@ -75,13 +77,12 @@ const SiteLayout = ({ children }: SiteLayoutProps) => {
         collapsed={collapsed}
         style={{
           background: colorBgContainer,
-          height: '100vh',
         }}
       >
         <div className="logo" />
         <Menu
           defaultOpenKeys={['sub1']}
-          style={{ maxWidth: 256, background: colorBgContainer }}
+          style={{ maxWidth: 236, background: colorBgContainer }}
           defaultSelectedKeys={['1']}
           mode="inline"
           items={[

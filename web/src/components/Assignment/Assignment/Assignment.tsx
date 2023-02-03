@@ -1,11 +1,13 @@
+import type {
+  DeleteAssignmentMutationVariables,
+  FindAssignmentById,
+} from 'types/graphql'
 
 import { Link, routes, navigate } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
-import { timeTag,  } from 'src/lib/formatters'
-
-import type { DeleteAssignmentMutationVariables, FindAssignmentById } from 'types/graphql'
+import { timeTag } from 'src/lib/formatters'
 
 const DELETE_ASSIGNMENT_MUTATION = gql`
   mutation DeleteAssignmentMutation($id: Int!) {
@@ -49,22 +51,28 @@ const Assignment = ({ assignment }: Props) => {
             <tr>
               <th>Id</th>
               <td>{assignment.id}</td>
-            </tr><tr>
+            </tr>
+            <tr>
               <th>Name</th>
               <td>{assignment.name}</td>
-            </tr><tr>
+            </tr>
+            <tr>
               <th>Description</th>
               <td>{assignment.description}</td>
-            </tr><tr>
+            </tr>
+            <tr>
               <th>User id</th>
               <td>{assignment.userId}</td>
-            </tr><tr>
+            </tr>
+            <tr>
               <th>Organization id</th>
               <td>{assignment.organizationId}</td>
-            </tr><tr>
+            </tr>
+            <tr>
               <th>Assigned date</th>
               <td>{timeTag(assignment.assignedDate)}</td>
-            </tr><tr>
+            </tr>
+            <tr>
               <th>Due date</th>
               <td>{timeTag(assignment.dueDate)}</td>
             </tr>

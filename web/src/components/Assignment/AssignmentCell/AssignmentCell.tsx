@@ -26,6 +26,8 @@ export const Failure = ({ error }: CellFailureProps) => (
   <div className="rw-cell-error">{error?.message}</div>
 )
 
-export const Success = ({ assignment }: CellSuccessProps<FindAssignmentById>) => {
+export const Success = ({
+  assignment,
+}: CellSuccessProps<FindAssignmentById>) => {
   return <Assignment assignment={assignment} />
 }

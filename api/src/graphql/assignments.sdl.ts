@@ -9,6 +9,7 @@ export const schema = gql`
     organizationId: Int!
     assignedDate: DateTime!
     dueDate: DateTime!
+    progress: Int!
   }
 
   type Query {

@@ -15,6 +15,7 @@ export const QUERY = gql`
       organizationId
       assignedDate
       dueDate
+      progress
     }
   }
 `
@@ -25,10 +26,7 @@ export const Empty = () => {
   return (
     <div className="rw-text-center">
       {'No assignments yet. '}
-      <Link
-        to={routes.newAssignment()}
-        className="rw-link"
-      >
+      <Link to={routes.newAssignment()} className="rw-link">
         {'Create one?'}
       </Link>
     </div>
@@ -40,5 +38,5 @@ export const Failure = ({ error }: CellFailureProps) => (
 )
 
 export const Success = ({ assignments }: CellSuccessProps<FindAssignments>) => {
-  return <Assignments assignments={assignments} />
+  return assignments
 }

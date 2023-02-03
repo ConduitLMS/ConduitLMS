@@ -97,4 +97,5 @@ model Assignment {
   organizationId Int
   assignedDate DateTime
   dueDate DateTime
+  progress Int
 }
