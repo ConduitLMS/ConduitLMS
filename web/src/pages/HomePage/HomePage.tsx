@@ -14,11 +14,12 @@ import {
   Statistic,
   Card,
   Progress,
-  Space,
+  Typography,
 } from 'antd'
 import type { CalendarMode } from 'antd/es/calendar/generateCalendar'
 import Title from 'antd/es/typography/Title'
 import type { Dayjs } from 'dayjs'
+import Moment from 'moment'
 import CountUp from 'react-countup'
 import { useTranslation } from 'react-i18next'
 import { useRecoilState } from 'recoil'
@@ -31,6 +32,8 @@ import UserCell from 'src/components/UserCell/UserCell'
 import userSessionAtom from 'src/recoil/atoms/userSession'
 import assignmentsSessionAtom from 'src/recoil/atoms/userSession'
 
+const { Paragraph, Text } = Typography
+
 const HomePage = () => {
   const [userSession, setUserSession] = useRecoilState(userSessionAtom)
   const [assignmentsSession, setAssignmentSession] = useRecoilState(
@@ -40,6 +43,7 @@ const HomePage = () => {
 
   const { token } = theme.useToken()
   const formatter = (value: number) => <CountUp end={value} separator="," />
+  Moment.locale('en')
 
   const onPanelChange = (value: Dayjs, mode: CalendarMode) => {
     console.log(value.format('YYYY-MM-DD'), mode)
@@ -61,7 +65,6 @@ const HomePage = () => {
     setUserSession(userQueryRes)
   })
 
-  console.log(assignmentsSession)
   return (
     <>
       <MetaTags title="Home" description="Home page" />
@@ -117,33 +120,60 @@ const HomePage = () => {
         </Col>
       </Row>
       <Row>
-        <Col span={16} style={{ padding: 15 }}>
+        <Col span={16} style={{ padding: 15, height: '70vh' }}>
           <Card style={{ height: '100%', padding: 15 }}>
-            <Title level={3}>{t('Home.dashboardTitle')}</Title>
-            {assignmentsQueryRes ? (
-              assignmentsQueryRes.map((assignment) => (
-                <Card style={{ padding: 0, margin: 0 }} key={assignment.id}>
-                  <h1>{assignment.name}</h1>
-                  <p key={assignment.id}>
-                    {assignment.description}, {assignment.dueDate},{' '}
-                    {assignment.progress}
-                  </p>
-                  <Progress
-                    percent={assignment.progress}
-                    strokeColor={{ '0%': '#108ee9', '100%': '#87d068' }}
-                  />
-                </Card>
-              ))
-            ) : (
-              <p>Loading Assignments</p>
-            )}
+            <Title level={3} style={{ marginTop: -10 }}>
+              {t('Home.dashboardTitle')}
+            </Title>
+            <div
+              style={{
+                maxHeight: '85%',
+                overflowY: 'auto',
+                position: 'absolute',
+                width: '90%',
+                padding: 5,
+              }}
+            >
+              {assignmentsQueryRes ? (
+                assignmentsQueryRes.map((assignment) => (
+                  <Card style={{ padding: 0, margin: 5 }} key={assignment.id}>
+                    <Row>
+                      <Col span={18}>
+                        <Text strong>{assignment.name}</Text>
+                      </Col>
+                      <Col span={6}>
+                        <Text type="secondary">
+                          Due:{' '}
+                          {Moment(assignment.dueDate).format(
+                            'd MMM YYYY @ HH:MM'
+                          )}
+                        </Text>
+                      </Col>
+                    </Row>
+                    <Text
+                      type="secondary"
+                      key={assignment.id}
+                      style={{ paddingLeft: 15 }}
+                    >
+                      {assignment.description}
+                    </Text>
+                    <Progress
+                      percent={assignment.progress}
+                      strokeColor={{ '0%': '#108ee9', '100%': '#87d068' }}
+                    />
+                  </Card>
+                ))
+              ) : (
+                <p>Loading Assignments</p>
+              )}
+            </div>
           </Card>
         </Col>
         <Col span={8} style={{ paddingTop: 15 }}>
           <div style={wrapperStyle}>
             <Calendar fullscreen={false} onPanelChange={onPanelChange} />
           </div>
-          <Card style={{ marginTop: 15 }}></Card>
+          <Card style={{ marginTop: 15, height: '50%' }}></Card>
         </Col>
       </Row>
     </>
