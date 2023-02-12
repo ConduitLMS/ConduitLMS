@@ -11,6 +11,8 @@ export const schema = gql`
     dueDate: DateTime!
     progress: Int!
     userAnswers: JSON!
+    module: Module!
+    moduleId: Int!
   }
 
   type Query {

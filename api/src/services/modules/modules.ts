@@ -1,4 +1,8 @@
-import type { QueryResolvers, MutationResolvers } from 'types/graphql'
+import type {
+  QueryResolvers,
+  MutationResolvers,
+  ModuleRelationResolvers,
+} from 'types/graphql'
 
 import { db } from 'src/lib/db'
 
@@ -32,4 +36,10 @@ export const deleteModule: MutationResolvers['deleteModule'] = ({ id }) => {
   return db.module.delete({
     where: { id },
   })
+}
+
+export const Module: ModuleRelationResolvers = {
+  assignments: (_obj, { root }) => {
+    return db.module.findUnique({ where: { id: root?.id } }).assignments()
+  },
 }

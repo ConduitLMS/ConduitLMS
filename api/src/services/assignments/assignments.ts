@@ -49,4 +49,7 @@ export const Assignment: AssignmentRelationResolvers = {
   organization: (_obj, { root }) => {
     return db.assignment.findUnique({ where: { id: root?.id } }).organization()
   },
+  module: (_obj, { root }) => {
+    return db.assignment.findUnique({ where: { id: root?.id } }).module()
+  },
 }

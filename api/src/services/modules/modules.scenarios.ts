@@ -6,21 +6,15 @@ export const standard = defineScenario<Prisma.ModuleCreateArgs>({
     one: {
       data: {
         name: 'String',
-        description: 'String',
         moduleType: 'DOCUMENTAPPROVAL',
-        questionJson: { foo: 'bar' },
-        answerKey: { foo: 'bar' },
-        updatedAt: '2023-02-11T02:17:45.652Z',
+        updatedAt: '2023-02-12T02:55:17.366Z',
       },
     },
     two: {
       data: {
         name: 'String',
-        description: 'String',
         moduleType: 'DOCUMENTAPPROVAL',
-        questionJson: { foo: 'bar' },
-        answerKey: { foo: 'bar' },
-        updatedAt: '2023-02-11T02:17:45.652Z',
+        updatedAt: '2023-02-12T02:55:17.366Z',
       },
     },
   },

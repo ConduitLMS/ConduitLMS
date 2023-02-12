@@ -32,20 +32,14 @@ describe('modules', () => {
     const result = await createModule({
       input: {
         name: 'String',
-        description: 'String',
         moduleType: 'DOCUMENTAPPROVAL',
-        questionJson: { foo: 'bar' },
-        answerKey: { foo: 'bar' },
-        updatedAt: '2023-02-11T02:17:45.628Z',
+        updatedAt: '2023-02-12T02:55:17.357Z',
       },
     })
 
     expect(result.name).toEqual('String')
-    expect(result.description).toEqual('String')
     expect(result.moduleType).toEqual('DOCUMENTAPPROVAL')
-    expect(result.questionJson).toEqual({ foo: 'bar' })
-    expect(result.answerKey).toEqual({ foo: 'bar' })
-    expect(result.updatedAt).toEqual(new Date('2023-02-11T02:17:45.628Z'))
+    expect(result.updatedAt).toEqual(new Date('2023-02-12T02:55:17.357Z'))
   })
 
   scenario('updates a module', async (scenario: StandardScenario) => {

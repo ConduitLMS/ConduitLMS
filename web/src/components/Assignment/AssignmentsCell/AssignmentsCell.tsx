@@ -16,6 +16,12 @@ export const QUERY = gql`
       assignedDate
       dueDate
       progress
+      module {
+        id
+        name
+        description
+        moduleType
+      }
     }
   }
 `

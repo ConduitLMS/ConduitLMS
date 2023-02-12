@@ -2,10 +2,11 @@ export const schema = gql`
   type Module {
     id: Int!
     name: String!
-    description: String!
+    description: String
     moduleType: ModuleTypes!
-    questionJson: JSON!
-    answerKey: JSON!
+    questionJson: JSON
+    answerKey: JSON
+    assignments: [Assignment]!
     createdAt: DateTime!
     updatedAt: DateTime!
   }
@@ -22,10 +23,10 @@ export const schema = gql`
 
   input CreateModuleInput {
     name: String!
-    description: String!
+    description: String
     moduleType: ModuleTypes!
-    questionJson: JSON!
-    answerKey: JSON!
+    questionJson: JSON
+    answerKey: JSON
   }
 
   input UpdateModuleInput {

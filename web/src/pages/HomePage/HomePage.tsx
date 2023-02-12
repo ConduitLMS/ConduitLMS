@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 import {
   TrophyOutlined,
@@ -15,6 +15,8 @@ import {
   Card,
   Progress,
   Typography,
+  Modal,
+  Button,
 } from 'antd'
 import type { CalendarMode } from 'antd/es/calendar/generateCalendar'
 import Title from 'antd/es/typography/Title'
@@ -39,6 +41,8 @@ const HomePage = () => {
   const [assignmentsSession, setAssignmentSession] = useRecoilState(
     assignmentsSessionAtom
   )
+  const [modalOpen, setModalOpen] = useState(false)
+
   const { currentUser } = useAuth()
 
   const { token } = theme.useToken()
@@ -65,8 +69,26 @@ const HomePage = () => {
     setUserSession(userQueryRes)
   })
 
+  //console.log(assignmentsQueryRes.filter((element) => element.progress < 100))
+  console.log(
+    assignmentsQueryRes
+      ? assignmentsQueryRes.filter((element) => element.progress < 100).l
+      : 33
+  )
+
   return (
     <>
+      <Modal
+        title="Vertically centered modal dialog"
+        centered
+        open={modalOpen}
+        onOk={() => setModalOpen(false)}
+        onCancel={() => setModalOpen(false)}
+      >
+        <p>some contents...</p>
+        <p>some contents...</p>
+        <p>some contents...</p>
+      </Modal>
       <MetaTags title="Home" description="Home page" />
       <Card style={{ height: '10%' }}>
         <Row gutter={16} style={{ padding: 15, height: '100%' }}>
@@ -74,7 +96,15 @@ const HomePage = () => {
             <Card bordered={false}>
               <Statistic
                 title={t('Home.Stat1')}
-                value={11.28}
+                value={
+                  assignmentsQueryRes
+                    ? (assignmentsQueryRes.filter(
+                        (element) => element.progress < 100
+                      ).length /
+                        assignmentsQueryRes.length) *
+                      100
+                    : 0
+                }
                 precision={2}
                 valueStyle={{ color: token.colorInfo }}
                 prefix={<BookOutlined />}
@@ -137,7 +167,11 @@ const HomePage = () => {
               >
                 {assignmentsQueryRes ? (
                   assignmentsQueryRes.map((assignment) => (
-                    <Card style={{ padding: 0, margin: 5 }} key={assignment.id}>
+                    <Card
+                      style={{ padding: 0, margin: 5 }}
+                      key={assignment.id}
+                      onClick={() => setModalOpen(true)}
+                    >
                       <Row>
                         <Col span={18}>
                           <Text strong>{assignment.name}</Text>
