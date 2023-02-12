@@ -70,11 +70,8 @@ const HomePage = () => {
   })
 
   //console.log(assignmentsQueryRes.filter((element) => element.progress < 100))
-  console.log(
-    assignmentsQueryRes
-      ? assignmentsQueryRes.filter((element) => element.progress < 100).l
-      : 33
-  )
+  console.log(Moment(Date.now()).format('YYYY-MM-DD'))
+  console.log(Moment('1970-01-01T00:00:00.000Z').format('YYYY-MM-DD'))
 
   return (
     <>
@@ -129,7 +126,16 @@ const HomePage = () => {
             <Card bordered={false}>
               <Statistic
                 title={t('Home.Stat3')}
-                value={9.3}
+                value={
+                  assignmentsQueryRes
+                    ? assignmentsQueryRes.filter(
+                        (element) =>
+                          Moment(element.dueDate).format('YYYYMMDD') <
+                            Moment(Date.now()).format('YYYYMMDD') &&
+                          element.progress < 100
+                      ).length
+                    : 10
+                }
                 precision={2}
                 valueStyle={{ color: token.colorError }}
                 prefix={<AlertOutlined />}
