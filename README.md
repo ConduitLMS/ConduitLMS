@@ -12,6 +12,10 @@
     <a target="_blank"><img src="https://img.shields.io/badge/license-MIT-green" alt="Package License" /></a>
     <a href="https://ko-fi.com/waunbroderick" target="_blank"><img src="https://img.shields.io/badge/Donate-kofi-ff3f59.svg"/></a>
 </div>
+    <div align="center">
+[![Netlify Status](https://api.netlify.com/api/v1/badges/4650b90b-12c9-4f56-95aa-7103b8399214/deploy-status)](https://app.netlify.com/sites/conduitlms/deploys)
+</div>
+
 
 ---
 ### Development
