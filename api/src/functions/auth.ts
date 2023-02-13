@@ -173,7 +173,7 @@ export const handler = async (
       Path: '/',
       SameSite: 'Strict',
       Secure: process.env.NODE_ENV !== 'development' ? true : false,
-      Domain: 'localhost',
+      //Domain: 'localhost',
 
       // If you need to allow other domains (besides the api side) access to
       // the dbAuth session cookie:
