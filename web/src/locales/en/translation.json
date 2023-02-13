@@ -17,9 +17,13 @@
   "Home": {
     "Title": "Home Dashboard",
     "dashboardTitle": "Assignments",
-    "Stat1": "Courses Pending",
+    "Stat1": "Assignments Pending",
+    "Stat1Tooltip": "Assignments not at 100% Completion",
     "Stat2": "Deadlines Approaching",
+    "Stat2Tooltip": "Assignments due in the next 7 days",
     "Stat3": "Overdue",
-    "Stat4": "Achievements"
+    "Stat3Tooltip": "Assignments that are past their due date",
+    "Stat4": "Achievements",
+    "Stat4Tooltip": "All personal achievements"
   }
   }

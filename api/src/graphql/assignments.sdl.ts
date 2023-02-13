@@ -10,6 +10,9 @@ export const schema = gql`
     assignedDate: DateTime!
     dueDate: DateTime!
     progress: Int!
+    userAnswers: JSON!
+    module: Module!
+    moduleId: Int!
   }
 
   type Query {

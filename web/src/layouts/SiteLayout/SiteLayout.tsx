@@ -69,7 +69,7 @@ const SiteLayout = ({ children }: SiteLayoutProps) => {
   const { t, i18n } = useTranslation()
 
   return (
-    <Layout style={{ height: '100%' }}>
+    <Layout style={{ maxHeight: '100%' }}>
       <div className="logo" />
       <Sider
         trigger={null}
@@ -83,7 +83,7 @@ const SiteLayout = ({ children }: SiteLayoutProps) => {
         <Menu
           defaultOpenKeys={['sub1']}
           style={{ maxWidth: 236, background: colorBgContainer }}
-          defaultSelectedKeys={['1']}
+          defaultSelectedKeys={['home']}
           mode="inline"
           items={[
             getItem(
@@ -102,12 +102,8 @@ const SiteLayout = ({ children }: SiteLayoutProps) => {
 
             getItem(
               <Link to={routes.courses()}>{t('navigationItems.Courses')}</Link>,
-              'Courses',
-              <BookOutlined />,
-              [
-                getItem('Create A Course', 'createCourse'),
-                getItem('Query A Course', 'queryCourse'),
-              ]
+              'courses',
+              <BookOutlined />
             ),
           ]}
         />

@@ -70,32 +70,35 @@ model Role {
   updatedAt   DateTime @updatedAt
   users       User[]
 }
-
-model ModuleDocumentAgreement {
+model Module {
   id          Int      @id @default(autoincrement())
-  name        String   @unique
-  description String
-  moduleTypeId Int
-  content String
-  attachments String[]
-  confirm Boolean
+  name        String
+  description String?
+  moduleType ModuleTypes
+  questionJson Json?
+  answerKey Json?
+  assignments Assignment[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
-model ModuleType {
-  id         Int      @id @default(autoincrement())
-  name        String   @unique
-  description String
+enum ModuleTypes {
+  DOCUMENTAPPROVAL
+  QUIZ
 }
 
 model Assignment {
   id          Int      @id @default(autoincrement())
   name        String   @unique
-  description String
+  description String?
   user User @relation(fields: [userId], references: [id])
   userId Int
   organization Organization @relation(fields: [organizationId], references: [id])
   organizationId Int
+  module Module @relation(fields: [moduleId], references: [id])
+  moduleId Int
   assignedDate DateTime
   dueDate DateTime
-  progress Int
+  progress Int @default(0)
+  userAnswers Json?
 }
