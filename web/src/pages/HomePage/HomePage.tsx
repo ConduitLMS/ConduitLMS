@@ -82,7 +82,7 @@ const HomePage = () => {
         onOk={() => setModalOpen(false)}
         onCancel={() => setModalOpen(false)}
       >
-        <p>Placeholder Text...</p>
+        <p>Placeholder Text.</p>
       </Modal>
       <MetaTags title="Home" description="Home page" />
       <Card style={{ height: '10%' }}>
