@@ -16,7 +16,7 @@ import {
   Progress,
   Typography,
   Modal,
-  Button,
+  Tooltip,
 } from 'antd'
 import type { CalendarMode } from 'antd/es/calendar/generateCalendar'
 import Title from 'antd/es/typography/Title'
@@ -76,84 +76,90 @@ const HomePage = () => {
   return (
     <>
       <Modal
-        title="Vertically centered modal dialog"
+        title="To Be Implemented...."
         centered
         open={modalOpen}
         onOk={() => setModalOpen(false)}
         onCancel={() => setModalOpen(false)}
       >
-        <p>some contents...</p>
-        <p>some contents...</p>
-        <p>some contents...</p>
+        <p>Placeholder Text...</p>
       </Modal>
       <MetaTags title="Home" description="Home page" />
       <Card style={{ height: '10%' }}>
         <Row gutter={16} style={{ padding: 15, height: '100%' }}>
           <Col sm={6} md={6} lg={6} xl={6}>
-            <Card bordered={false}>
-              <Statistic
-                title={t('Home.Stat1')}
-                value={
-                  assignmentsQueryRes
-                    ? (assignmentsQueryRes.filter(
-                        (element) => element.progress < 100
-                      ).length /
-                        assignmentsQueryRes.length) *
-                      100
-                    : 0
-                }
-                precision={2}
-                valueStyle={{ color: token.colorInfo }}
-                prefix={<BookOutlined />}
-                suffix="%"
-                formatter={formatter}
-              />
-            </Card>
+            <Tooltip title={t('Home.Stat1Tooltip')}>
+              <Card bordered={false}>
+                <Statistic
+                  title={t('Home.Stat1')}
+                  value={
+                    assignmentsQueryRes
+                      ? (assignmentsQueryRes.filter(
+                          (element) => element.progress < 100
+                        ).length /
+                          assignmentsQueryRes.length) *
+                        100
+                      : 0
+                  }
+                  precision={2}
+                  valueStyle={{ color: token.colorInfo }}
+                  prefix={<BookOutlined />}
+                  suffix="%"
+                  formatter={formatter}
+                />
+              </Card>
+            </Tooltip>
           </Col>
           <Col sm={6} md={6} lg={6} xl={6}>
-            <Card bordered={false}>
-              <Statistic
-                title={t('Home.Stat2')}
-                value={9}
-                precision={2}
-                valueStyle={{ color: token.colorInfo }}
-                prefix={<ClockCircleOutlined />}
-                formatter={formatter}
-              />
-            </Card>
+            <Tooltip title={t('Home.Stat2Tooltip')}>
+              <Card bordered={false}>
+                <Statistic
+                  title={t('Home.Stat2')}
+                  value={9}
+                  precision={2}
+                  valueStyle={{ color: token.colorInfo }}
+                  prefix={<ClockCircleOutlined />}
+                  formatter={formatter}
+                />
+              </Card>
+            </Tooltip>
           </Col>
           <Col sm={6} md={6} lg={6} xl={6}>
-            <Card bordered={false}>
-              <Statistic
-                title={t('Home.Stat3')}
-                value={
-                  assignmentsQueryRes
-                    ? assignmentsQueryRes.filter(
-                        (element) =>
-                          Moment(element.dueDate).format('YYYYMMDD') <
-                            Moment(Date.now()).format('YYYYMMDD') &&
-                          element.progress < 100
-                      ).length
-                    : 10
-                }
-                precision={2}
-                valueStyle={{ color: token.colorError }}
-                prefix={<AlertOutlined />}
-                formatter={formatter}
-              />
-            </Card>
+            <Tooltip title={t('Home.Stat3Tooltip')}>
+              <Card bordered={false}>
+                <Statistic
+                  title={t('Home.Stat3')}
+                  value={
+                    assignmentsQueryRes
+                      ? assignmentsQueryRes.filter(
+                          (element) =>
+                            Moment(element.dueDate).format('YYYYMMDD') <
+                              Moment(Date.now()).format('YYYYMMDD') &&
+                            element.progress < 100
+                        ).length
+                      : 10
+                  }
+                  precision={2}
+                  valueStyle={{ color: token.colorError }}
+                  prefix={<AlertOutlined />}
+                  formatter={formatter}
+                />
+              </Card>
+            </Tooltip>
           </Col>
           <Col sm={6} md={6} lg={6} xl={6}>
-            <Card bordered={false}>
-              <Statistic
-                title={t('Home.Stat4')}
-                value={9.3}
-                precision={2}
-                valueStyle={{ color: token.colorSuccess }}
-                prefix={<TrophyOutlined />}
-                formatter={formatter}
-              />
-            </Card>
+            <Tooltip title={t('Home.Stat4Tooltip')}>
+              <Card bordered={false}>
+                <Statistic
+                  title={t('Home.Stat4')}
+                  value={9.3}
+                  precision={2}
+                  valueStyle={{ color: token.colorSuccess }}
+                  prefix={<TrophyOutlined />}
+                  formatter={formatter}
+                />
+              </Card>
+            </Tooltip>
           </Col>
         </Row>
         <Row>
@@ -180,7 +186,7 @@ const HomePage = () => {
                     >
                       <Row>
                         <Col span={18}>
-                          <Text strong>{assignment.name}</Text>
+                          <Text strong>{assignment.module.name}</Text>
                         </Col>
                         <Col span={6}>
                           <Text type="secondary">
@@ -196,7 +202,7 @@ const HomePage = () => {
                         key={assignment.id}
                         style={{ paddingLeft: 15 }}
                       >
-                        {assignment.description}
+                        {assignment.module.description}
                       </Text>
                       <Progress
                         percent={assignment.progress}
