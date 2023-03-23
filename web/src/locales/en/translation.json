@@ -12,7 +12,8 @@
     "Settings": "Settings",
     "Login": "Login",
     "Logout": "Logout",
-    "Register": "Register"
+    "Register": "Register",
+    "Testing": "Testing"
   },
   "Home": {
     "Title": "Home Dashboard",

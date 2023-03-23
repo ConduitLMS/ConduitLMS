@@ -21,6 +21,7 @@
 
 ---
 ### Development
+1. yarn rw dev
 
 #### Data Schema Changes
 1. Update the schema.prisma

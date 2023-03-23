@@ -30,18 +30,23 @@ import { useAuth } from '@redwoodjs/auth'
 import { MetaTags } from '@redwoodjs/web'
 
 import AssignmentsCell from 'src/components/Assignment/AssignmentsCell'
+import RenderQuiz from 'src/components/Quiz/RenderQuiz'
 import UserCell from 'src/components/UserCell/UserCell'
+import filteredAssingmentsListState from 'src/recoil/atoms/assignmentsSession'
 import userSessionAtom from 'src/recoil/atoms/userSession'
-import assignmentsSessionAtom from 'src/recoil/atoms/userSession'
+
+import { assignment } from '../../../../api/src/services/assignments/assignments'
 
 const { Paragraph, Text } = Typography
 
 const HomePage = () => {
   const [userSession, setUserSession] = useRecoilState(userSessionAtom)
-  const [assignmentsSession, setAssignmentSession] = useRecoilState(
-    assignmentsSessionAtom
-  )
+
   const [modalOpen, setModalOpen] = useState(false)
+  const [selectedCourse, setSelectedCourse] = React.useState({
+    name: '',
+    questions: {},
+  })
 
   const { currentUser } = useAuth()
 
@@ -51,6 +56,15 @@ const HomePage = () => {
 
   const onPanelChange = (value: Dayjs, mode: CalendarMode) => {
     console.log(value.format('YYYY-MM-DD'), mode)
+  }
+
+  const selectCourse = ({ assignment }) => {
+    setModalOpen(true)
+    setSelectedCourse((selectedCourse) => ({
+      ...selectedCourse,
+      name: assignment.module.name,
+      questions: assignment.module.questionJson,
+    }))
   }
 
   const wrapperStyle = {
@@ -70,19 +84,21 @@ const HomePage = () => {
   })
 
   //console.log(assignmentsQueryRes.filter((element) => element.progress < 100))
-  console.log(Moment(Date.now()).format('YYYY-MM-DD'))
-  console.log(Moment('1970-01-01T00:00:00.000Z').format('YYYY-MM-DD'))
+  //console.log(Moment(Date.now()).format('YYYY-MM-DD'))
+  //console.log(Moment('1970-01-01T00:00:00.000Z').format('YYYY-MM-DD'))
 
   return (
     <>
       <Modal
-        title="To Be Implemented...."
         centered
         open={modalOpen}
         onOk={() => setModalOpen(false)}
         onCancel={() => setModalOpen(false)}
       >
-        <p>Placeholder Text...</p>
+        <RenderQuiz
+          title={selectedCourse.name}
+          questions={selectedCourse.questions}
+        />
       </Modal>
       <MetaTags title="Home" description="Home page" />
       <Card style={{ height: '10%' }}>
@@ -182,7 +198,7 @@ const HomePage = () => {
                     <Card
                       style={{ padding: 0, margin: 5 }}
                       key={assignment.id}
-                      onClick={() => setModalOpen(true)}
+                      onClick={() => selectCourse({ assignment })}
                     >
                       <Row>
                         <Col span={18}>

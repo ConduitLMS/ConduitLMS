@@ -105,6 +105,11 @@ const SiteLayout = ({ children }: SiteLayoutProps) => {
               'courses',
               <BookOutlined />
             ),
+            getItem(
+              <Link to={routes.testing()}>{t('navigationItems.Testing')}</Link>,
+              'testing',
+              <BookOutlined />
+            ),
           ]}
         />
       </Sider>

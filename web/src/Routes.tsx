@@ -48,6 +48,7 @@ const Routes = () => {
           <Route path="/organization" page={OrganizationPage} name="organization" />
           <Route path="/marketplace" page={MarketplacePage} name="marketplace" />
           <Route path="/courses" page={CoursesPage} name="courses" />
+          <Route path="/testing" page={TestingPage} name="testing" />
           <Route path="/home" page={HomePage} name="home" />
         </Set>
       </Private>
