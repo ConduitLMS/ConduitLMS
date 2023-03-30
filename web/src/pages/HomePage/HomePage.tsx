@@ -32,7 +32,6 @@ import { MetaTags } from '@redwoodjs/web'
 import AssignmentsCell from 'src/components/Assignment/AssignmentsCell'
 import RenderQuiz from 'src/components/Quiz/RenderQuiz'
 import UserCell from 'src/components/UserCell/UserCell'
-import filteredAssingmentsListState from 'src/recoil/atoms/assignmentsSession'
 import userSessionAtom from 'src/recoil/atoms/userSession'
 
 import { assignment } from '../../../../api/src/services/assignments/assignments'
@@ -62,6 +61,7 @@ const HomePage = () => {
     setModalOpen(true)
     setSelectedCourse((selectedCourse) => ({
       ...selectedCourse,
+      id: assignment.id,
       name: assignment.module.name,
       questions: assignment.module.questionJson,
     }))
@@ -94,10 +94,12 @@ const HomePage = () => {
         open={modalOpen}
         onOk={() => setModalOpen(false)}
         onCancel={() => setModalOpen(false)}
+        footer={null}
       >
         <RenderQuiz
           title={selectedCourse.name}
           questions={selectedCourse.questions}
+          id={selectedCourse.id}
         />
       </Modal>
       <MetaTags title="Home" description="Home page" />

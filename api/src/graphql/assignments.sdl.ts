@@ -36,6 +36,7 @@ export const schema = gql`
     organizationId: Int
     assignedDate: DateTime
     dueDate: DateTime
+    userAnswers: JSON
   }
 
   type Mutation {

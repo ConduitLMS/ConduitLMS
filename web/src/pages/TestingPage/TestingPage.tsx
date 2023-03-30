@@ -21,8 +21,6 @@ const TestingPage = () => {
   return (
     <>
       <MetaTags title="Testing" description="Testing page" />
-
-      <RenderQuiz title={'cat'} />
     </>
   )
 }
