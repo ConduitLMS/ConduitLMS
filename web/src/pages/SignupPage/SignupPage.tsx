@@ -3,17 +3,15 @@ import { useRef } from 'react'
 import { useEffect } from 'react'
 
 import { LockOutlined, UserOutlined } from '@ant-design/icons'
-import { Upload } from 'antd'
 import { Col, Row, Card, Layout, Divider, Tooltip } from 'antd'
-import { Button, Checkbox, Form, Input } from 'antd'
-import ImgCrop from 'antd-img-crop'
+import { Button, Checkbox, Form, Input, ColorPicker } from 'antd'
+import FormItem from 'antd/es/form/FormItem'
 import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface'
 import {
   CreateOrganizationMutation,
   CreateOrganizationMutationVariables,
 } from 'types/graphql'
 
-import { useAuth } from '@redwoodjs/auth'
 import { Link, navigate, routes } from '@redwoodjs/router'
 import { MetaTags, useMutation } from '@redwoodjs/web'
 import { toast, Toaster } from '@redwoodjs/web/toast'
@@ -29,14 +27,6 @@ const CREATE_ORGANIZATION = gql`
 `
 
 const SignupPage = () => {
-  const { isAuthenticated, signUp } = useAuth()
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      navigate(routes.home())
-    }
-  }, [isAuthenticated])
-
   // focus on username box on page load
   const usernameRef = useRef<HTMLInputElement>(null)
   useEffect(() => {
@@ -154,19 +144,7 @@ const SignupPage = () => {
                       padding: 20,
                       //#Todo: Properly center this component
                     }}
-                  >
-                    <ImgCrop rotate>
-                      <Upload
-                        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                        listType="picture-card"
-                        fileList={fileList}
-                        onChange={onChange}
-                        onPreview={onPreview}
-                      >
-                        {fileList.length < 1 && '+ Upload'}
-                      </Upload>
-                    </ImgCrop>
-                  </div>
+                  ></div>
                   <Tooltip title="The desired name of your organization. Does not have to be unique and can be changed later.">
                     <Form.Item
                       label="Organization Name"
@@ -182,49 +160,45 @@ const SignupPage = () => {
                     </Form.Item>
                   </Tooltip>
 
-                  <Tooltip title="A failsafe contact email for your organization. Can be changed later.">
+                  <Tooltip title="Your Organization logo.">
                     <Form.Item
-                      label="Contact Email"
-                      name="contactEmail"
+                      label="Organization Logo"
+                      name="orgLogo"
                       rules={[
                         {
-                          required: true,
+                          required: false,
                           message:
-                            'Please enter an email we can contact you at.',
-                        },
-                        {
-                          pattern: /^[^@]+@[^.]+..+$/,
-                          message: 'field must be a valid email address',
+                            'Please input the URL for the logo you wish to use for your organization!',
                         },
                       ]}
                     >
                       <Input />
-                    </Form.Item>{' '}
+                    </Form.Item>
                   </Tooltip>
 
-                  <Form.Item
-                    label="Address"
-                    name="address"
-                    rules={[
-                      {
-                        required: false,
-                      },
-                    ]}
-                  >
-                    <Input />
-                  </Form.Item>
+                  <Tooltip>
+                    <Form.Item label="Primary Colour" name="primaryColour">
+                      <ColorPicker
+                        showText={(color) => (
+                          <span>Primary Colour ({color.toHexString()})</span>
+                        )}
+                      />
+                    </Form.Item>
+                  </Tooltip>
 
-                  <Form.Item
-                    label="Country"
-                    name="country"
-                    rules={[
-                      {
-                        required: false,
-                      },
-                    ]}
-                  >
-                    <Input />
-                  </Form.Item>
+                  <Tooltip>
+                    <Form.Item
+                      label="Background Colour"
+                      name="backgroundColour"
+                    >
+                      <ColorPicker
+                        showText={(color) => (
+                          <span>Background Colour ({color.toHexString()})</span>
+                        )}
+                      />
+                    </Form.Item>
+                  </Tooltip>
+
                   <Divider plain>Admin Account</Divider>
                   <Form.Item
                     label="Account Email"
@@ -290,9 +264,7 @@ const SignupPage = () => {
                 >
                   <p>
                     Already have an account{' '}
-                    <span style={{ color: 'blue' }}>
-                      <Link to={routes.login()}>LogIn.</Link>
-                    </span>
+                    <span style={{ color: 'blue' }}></span>
                   </p>
                 </div>
               </Card>

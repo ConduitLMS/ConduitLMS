@@ -3,14 +3,13 @@ import { ConfigProvider, theme } from 'antd'
 import { initializeApp, getApp, getApps } from 'firebase/app'
 import { RecoilRoot } from 'recoil'
 
-import { AuthProvider } from '@redwoodjs/auth'
-import WebAuthnClient from '@redwoodjs/auth/webAuthn'
 import { FatalErrorBoundary, RedwoodProvider } from '@redwoodjs/web'
 import { RedwoodApolloProvider } from '@redwoodjs/web/apollo'
 
 import FatalErrorPage from 'src/pages/FatalErrorPage'
 import Routes from 'src/Routes'
 
+import { AuthProvider, useAuth } from './auth'
 // Recoil Root for statemanagemnt
 
 import './i18n'
@@ -52,8 +51,8 @@ function App() {
         }}
       >
         <RedwoodProvider titleTemplate="%PageTitle | %AppTitle">
-          <AuthProvider type="dbAuth" client={WebAuthnClient}>
-            <RedwoodApolloProvider>
+          <AuthProvider>
+            <RedwoodApolloProvider useAuth={useAuth}>
               <RecoilRoot>
                 <Routes />
               </RecoilRoot>
