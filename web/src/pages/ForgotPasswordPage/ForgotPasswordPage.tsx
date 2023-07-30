@@ -52,80 +52,78 @@ const ForgotPasswordPage = () => {
     }
   }
 
-  return (
-    <>
-      <MetaTags title="Forgot Password" />
-      <Layout style={{ height: '100vh' }}>
-        <Content>
-          <Row
-            justify="space-around"
-            align="middle"
-            style={{ height: '100vh' }}
-          >
-            <Col>
-              <Card
-                title="Forgot Password"
+  return (<>
+    <MetaTags title="Forgot Password" />
+    <Layout style={{ height: '100vh' }}>
+      <Content>
+        <Row
+          justify="space-around"
+          align="middle"
+          style={{ height: '100vh' }}
+        >
+          <Col>
+            <Card
+              title="Forgot Password"
+              style={{
+                width: 500,
+                textAlign: 'center',
+              }}
+              bordered={false}
+            >
+              <Toaster
+                toastOptions={{ className: 'rw-toast', duration: 6000 }}
+              />
+              <Form
+                name="basic"
+                form={form}
+                labelCol={{ span: 8 }}
+                wrapperCol={{ span: 16 }}
+                initialValues={{ remember: true }}
+                onFinish={onSubmit}
+                //onFinishFailed={}
+                autoComplete="off"
+              >
+                <Form.Item
+                  label="Username"
+                  name="username"
+                  rules={[
+                    {
+                      required: true,
+                      message: 'Please enter an email to send reset link to.',
+                    },
+                    {
+                      pattern: /^[^@]+@[^.]+..+$/,
+                      message: 'field must be a valid email address',
+                    },
+                  ]}
+                >
+                  <Input />
+                </Form.Item>
+                <Form.Item wrapperCol={{ offset: 4, span: 16 }}>
+                  <Button type="primary" htmlType="submit">
+                    Submit
+                  </Button>
+                </Form.Item>
+              </Form>
+
+              <div
                 style={{
-                  width: 500,
                   textAlign: 'center',
                 }}
-                bordered={false}
               >
-                <Toaster
-                  toastOptions={{ className: 'rw-toast', duration: 6000 }}
-                />
-                <Form
-                  name="basic"
-                  form={form}
-                  labelCol={{ span: 8 }}
-                  wrapperCol={{ span: 16 }}
-                  initialValues={{ remember: true }}
-                  onFinish={onSubmit}
-                  //onFinishFailed={}
-                  autoComplete="off"
-                >
-                  <Form.Item
-                    label="Username"
-                    name="username"
-                    rules={[
-                      {
-                        required: true,
-                        message: 'Please enter an email to send reset link to.',
-                      },
-                      {
-                        pattern: /^[^@]+@[^.]+..+$/,
-                        message: 'field must be a valid email address',
-                      },
-                    ]}
-                  >
-                    <Input />
-                  </Form.Item>
-                  <Form.Item wrapperCol={{ offset: 4, span: 16 }}>
-                    <Button type="primary" htmlType="submit">
-                      Submit
-                    </Button>
-                  </Form.Item>
-                </Form>
-
-                <div
-                  style={{
-                    textAlign: 'center',
-                  }}
-                >
-                  <p>
-                    Already have an account{' '}
-                    <span style={{ color: 'blue' }}>
-                      <Link to={routes.login()}>LogIn.</Link>
-                    </span>
-                  </p>
-                </div>
-              </Card>
-            </Col>
-          </Row>
-        </Content>
-      </Layout>
-    </>
-  )
+                <p>
+                  Already have an account{' '}
+                  <span style={{ color: 'blue' }}>
+                    <Link to={routes.login()}>LogIn.</Link>
+                  </span>
+                </p>
+              </div>
+            </Card>
+          </Col>
+        </Row>
+      </Content>
+    </Layout>
+  </>);
 }
 
 export default ForgotPasswordPage

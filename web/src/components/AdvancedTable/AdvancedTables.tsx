@@ -14,12 +14,8 @@ import { MetaTags } from '@redwoodjs/web'
 
 import ModuleDocumentAgreementsCell from 'src/components/ModuleDocumentAgreement/ModuleDocumentAgreementsCell/ModuleDocumentAgreementsCell'
 
-interface TitleProps {
-  title: string
-}
-
-const Table: FC<TitleProps> = ({ title, subtitle }) => {
-  type GithubIssueItem = {
+const Table: FC<TitleProps> = ({}) => {
+  type UserItem = {
     url: string
     id: number
     number: number
@@ -35,14 +31,29 @@ const Table: FC<TitleProps> = ({ title, subtitle }) => {
     closed_at?: string
   }
 
-  const columns: ProColumns<GithubIssueItem>[] = [
+  const columns: ProColumns<UserItem>[] = [
     {
       dataIndex: 'index',
       valueType: 'indexBorder',
       width: 48,
     },
     {
-      title: 'title',
+      title: 'First Name',
+      dataIndex: 'title',
+      copyable: true,
+      ellipsis: true,
+      tip: 'If the title is too long, it will automatically shrink',
+      formItemProps: {
+        rules: [
+          {
+            required: true,
+            message: 'This is required',
+          },
+        ],
+      },
+    },
+    {
+      title: 'Last Name',
       dataIndex: 'title',
       copyable: true,
       ellipsis: true,
@@ -58,7 +69,7 @@ const Table: FC<TitleProps> = ({ title, subtitle }) => {
     },
     {
       disable: true,
-      title: 'state',
+      title: 'Departments',
       dataIndex: 'state',
       filters: true,
       onFilter: true,
@@ -154,19 +165,38 @@ const Table: FC<TitleProps> = ({ title, subtitle }) => {
     },
   ]
 
+  const testData = [
+    {
+      id: 1,
+      title: 'title1',
+      state: 'open',
+      labels: [
+        {
+          name: 'label1',
+          color: 'red',
+        },
+      ],
+      created_at: '2021-01-01',
+    },
+    {
+      id: 2,
+      title: 'title2',
+      state: 'closed',
+      labels: [
+        {
+          name: 'label2',
+          color: 'blue',
+        },
+      ],
+      created_at: '2021-01-02',
+    },
+  ]
+
   return (
     <>
-      <h1>{title}</h1>
-      <h2>{subtitle}</h2>
       <ConfigProvider locale={en_US}>
         <MetaTags title="Courses" description="Courses page" />
 
-        <h1>CoursesPage</h1>
-        <ModuleDocumentAgreementsCell />
-        <p>
-          My default route is named <code>courses</code>, link to me with `
-          <Link to={routes.courses()}>Courses</Link>`
-        </p>
         <ProTable<GithubIssueItem>
           columns={columns}
           cardBordered
@@ -174,7 +204,7 @@ const Table: FC<TitleProps> = ({ title, subtitle }) => {
             console.log(sort, filter)
             return request<{
               data: GithubIssueItem[]
-            }>('https://proapi.azurewebsites.net/github/issues', {
+            }>(testData, {
               params,
             })
           }}
@@ -198,7 +228,6 @@ const Table: FC<TitleProps> = ({ title, subtitle }) => {
             },
           }}
           form={{
-            // 由于配置了 transform，提交的参与与定义的不同这里需要转化一下
             syncToUrl: (values, type) => {
               if (type === 'get') {
                 return {
@@ -214,34 +243,11 @@ const Table: FC<TitleProps> = ({ title, subtitle }) => {
             onChange: (page) => console.log(page),
           }}
           dateFormatter="string"
-          headerTitle="advanced form"
+          headerTitle="Users"
           toolBarRender={() => [
             <Button key="button" icon={<PlusOutlined />} type="primary">
-              new build
+              Invite User
             </Button>,
-            <Dropdown
-              key="menu"
-              menu={{
-                items: [
-                  {
-                    label: '1st item',
-                    key: '1',
-                  },
-                  {
-                    label: '2nd item',
-                    key: '1',
-                  },
-                  {
-                    label: '3rd item',
-                    key: '1',
-                  },
-                ],
-              }}
-            >
-              <Button>
-                <EllipsisOutlined />
-              </Button>
-            </Dropdown>,
           ]}
         />
       </ConfigProvider>

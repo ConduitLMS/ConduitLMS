@@ -1,4 +1,21 @@
-import { useEffect, useState } from 'react'
+import { useAuth } from 'src/auth'
+
+const HomePage = () => {
+  const { isAuthenticated, signUp } = useAuth()
+
+  return (
+    <>
+      {/* MetaTags, h1, paragraphs, etc. */}
+
+      <p>{JSON.stringify({ isAuthenticated })}</p>
+      <button onClick={signUp}>sign up</button>
+    </>
+  )
+}
+
+export default HomePage
+
+/*import { useEffect, useState } from 'react'
 
 import {
   TrophyOutlined,
@@ -247,3 +264,4 @@ const HomePage = () => {
 }
 
 export default HomePage
+*/

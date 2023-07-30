@@ -8,7 +8,8 @@
     ]
   },
   "devDependencies": {
-    "@redwoodjs/core": "^3.8.0",
+    "@redwoodjs/auth-auth0-setup": "6.0.1",
+    "@redwoodjs/core": "^6.0.1",
     "@types/styled-components": "^5.1.26"
   },
   "eslintConfig": {
@@ -26,7 +27,7 @@
   "dependencies": {
     "@ant-design/pro-components": "^2.3.47",
     "@ant-design/pro-table": "^3.2.7",
-    "antd": "^5.1.0",
+    "antd": "^5.7.0",
     "antd-img-crop": "^4.5.2",
     "i18next": "^22.4.9",
     "moment": "^2.29.4",

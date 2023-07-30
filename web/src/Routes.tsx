@@ -11,22 +11,34 @@ import { Set, Router, Route, Private } from '@redwoodjs/router'
 
 import ScaffoldLayout from 'src/layouts/ScaffoldLayout'
 
+import { useAuth } from './auth'
 import SiteLayout from './layouts/SiteLayout/SiteLayout'
 
 const Routes = () => {
   return (
-    <Router>
+    <Router useAuth={useAuth}>
+      <Route notfound page={NotFoundPage} />
+      <Route path="/forgot-password" page={ForgotPasswordPage} name="forgotPassword" />
+      <Route path="/reset-password" page={ResetPasswordPage} name="resetPassword" />
+      <Route path="/signup" page={SignupPage} name="signup" />
+      <Set wrap={SiteLayout}>
+        <Route path="/organization" page={OrganizationPage} name="organization" />
+        <Route path="/marketplace" page={MarketplacePage} name="marketplace" />
+        <Route path="/courses" page={CoursesPage} name="courses" />
+        <Route path="/testing" page={TestingPage} name="testing" />
+        <Route path="/home" page={HomePage} name="home" />
+      </Set>
+    </Router>
+  )
+}
+/*const Routes = () => {
+  return (
+    <Router useAuth={useAuth}>
       <Set wrap={ScaffoldLayout} title="Modules" titleTo="modules" buttonLabel="New Module" buttonTo="newModule">
         <Route path="/modules/new" page={ModuleNewModulePage} name="newModule" />
         <Route path="/modules/{id:Int}/edit" page={ModuleEditModulePage} name="editModule" />
         <Route path="/modules/{id:Int}" page={ModuleModulePage} name="module" />
         <Route path="/modules" page={ModuleModulesPage} name="modules" />
-      </Set>
-      <Set wrap={ScaffoldLayout} title="Assignments" titleTo="assignments" buttonLabel="New Assignment" buttonTo="newAssignment">
-        <Route path="/assignments/new" page={AssignmentNewAssignmentPage} name="newAssignment" />
-        <Route path="/assignments/{id:Int}/edit" page={AssignmentEditAssignmentPage} name="editAssignment" />
-        <Route path="/assignments/{id:Int}" page={AssignmentAssignmentPage} name="assignment" />
-        <Route path="/assignments" page={AssignmentAssignmentsPage} name="assignments" />
       </Set>
       <Set wrap={ScaffoldLayout} title="ModuleDocumentAgreements" titleTo="moduleDocumentAgreements" buttonLabel="New ModuleDocumentAgreement" buttonTo="newModuleDocumentAgreement">
         <Route path="/module-document-agreements/new" page={ModuleDocumentAgreementNewModuleDocumentAgreementPage} name="newModuleDocumentAgreement" />
@@ -56,6 +68,6 @@ const Routes = () => {
       <Route notfound page={NotFoundPage} />
     </Router>
   )
-}
+}*/
 
 export default Routes

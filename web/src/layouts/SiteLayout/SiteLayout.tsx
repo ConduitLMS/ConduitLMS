@@ -12,13 +12,11 @@ import type { MenuProps } from 'antd'
 import { Avatar, Badge, Breadcrumb, Dropdown, Layout, Menu, theme } from 'antd'
 import { useTranslation } from 'react-i18next'
 
-import { useAuth } from '@redwoodjs/auth'
-
 const { Header, Sider, Content } = Layout
 
-import { Link, Redirect, routes, useLocation } from '@redwoodjs/router'
-
 import { useRecoilValue } from 'recoil'
+
+import { Link, Redirect, routes, useLocation } from '@redwoodjs/router'
 
 import userSessionAtom from 'src/recoil/atoms/userSession'
 
@@ -50,8 +48,6 @@ const SiteLayout = ({ children }: SiteLayoutProps) => {
   const [collapsed, setCollapsed] = useState(false)
 
   const userState = useRecoilValue(userSessionAtom)
-
-  const { logOut } = useAuth()
 
   const onClick: MenuProps['onClick'] = (e) => {
     console.log('click ', e)

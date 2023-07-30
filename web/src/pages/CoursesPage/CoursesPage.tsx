@@ -17,7 +17,7 @@ import ModuleDocumentAgreementsCell from 'src/components/ModuleDocumentAgreement
 const CoursesPage = () => {
   return (
     <>
-      <Table title={'cat'} subtitle={'dog'} />
+      <Table />
     </>
   )
 }
