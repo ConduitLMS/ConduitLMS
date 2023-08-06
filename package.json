@@ -27,8 +27,10 @@
   "dependencies": {
     "@ant-design/pro-components": "^2.3.47",
     "@ant-design/pro-table": "^3.2.7",
+    "@prisma/client": "5",
     "antd": "^5.7.0",
     "antd-img-crop": "^4.5.2",
+    "axios": "^1.4.0",
     "i18next": "^22.4.9",
     "moment": "^2.29.4",
     "react-countup": "^6.4.0",
