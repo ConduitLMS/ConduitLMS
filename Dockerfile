@@ -26,7 +26,7 @@ FROM node:16-alpine
 
 WORKDIR /app
 
-# Only install API packages to keep image small
+# Only install API packages to keep image
 COPY api/package.json .
 
 RUN yarn install && yarn add react react-dom @redwoodjs/api-server @redwoodjs/internal prisma
