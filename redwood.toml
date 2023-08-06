@@ -6,9 +6,10 @@
 # https://redwoodjs.com/docs/app-configuration-redwood-toml
 
 [web]
+  bundler = "webpack"
   title = "Redwood App"
   port = 8910
-  apiUrl = "/.netlify/functions"
+  apiUrl = "./redwood/functions/graphql"
    includeEnvironmentVariables = [
      "AUTH0_DOMAIN",
      "AUTH0_CLIENT_ID",
